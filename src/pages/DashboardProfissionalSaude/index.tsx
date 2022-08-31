@@ -9,12 +9,18 @@ import {
   SectionContato,
 } from "./style";
 import { useEffect } from "react";
+import { api } from "../../services/api";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
 
 export const DashboardProfissionalSaude = () => {
-  useEffect(() => {});
+  useEffect(() => {
+    api.get("/users?isOng=false").then((response) => console.log(response));
+  }, []);
 
   return (
     <>
+      <Header />
       <Container>
         <div>
           <ImagemFundo src={fundo} alt="fundo" />
@@ -36,6 +42,7 @@ export const DashboardProfissionalSaude = () => {
           </SectionContato>
         </DivSections>
       </Container>
+      <Footer />
     </>
   );
 };
