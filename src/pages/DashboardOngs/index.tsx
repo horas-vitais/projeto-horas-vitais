@@ -6,7 +6,23 @@ import { ProfissionalContext } from "../../Providers/profissional";
 import { Doctors } from "./style";
 import Profissional from "../../components/Profissional";
 
-function ListaDeProfissionais({ type }) {
+interface IListaDeProfissionaisProps{
+  type: string,
+}
+
+interface IProfissional{
+  image: string,
+  name: string,
+  category: string,
+  description: string,
+  crm: string,
+  id: number,
+  especialidade: string
+  disposicao: string,
+}
+
+function ListaDeProfissionais({ type }: IListaDeProfissionaisProps) {
+
   const { profissionaisLista, setProfissionaisLista, filtroDeProfissionais, setfiltroDeProfissionais } =
     useContext(ProfissionalContext);
 
@@ -24,13 +40,18 @@ function ListaDeProfissionais({ type }) {
     <Doctors>
       <ul>
         {filtroDeProfissionais.length > 0
-          ? filtroDeProfissionais.map((profissional) => (
-               <li key={profissional.id}>{profissional.name}</li>
-              <Profissional key={profissional.id} type={type} profissional={profissional} />
+<<<<<<< HEAD
+          ? filtroDeProfissionais.map((profissional: IProfissional) => (
+               <li key={profissional.id}>
+                <h1>{profissional.name}</h1>
+                <Profissional key={profissional.id} type={type} profissional={profissional} />
+                </li>
             ))
-          : profissionaisLista.map((profissional) => (
-               <li key={profissional.id}>{profissional.name}</li>
-              <Profissional key={profissional.id} type={type} profissional={profissional} />
+          : profissionaisLista.map((profissional: IProfissional) => (
+               <li key={profissional.id}>
+                <h1>{profissional.name}</h1>
+                <Profissional key={profissional.id} type={type} profissional={profissional} />
+                </li>
             ))}
       </ul>
     </Doctors>

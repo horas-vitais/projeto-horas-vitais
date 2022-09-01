@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import "./App.css";

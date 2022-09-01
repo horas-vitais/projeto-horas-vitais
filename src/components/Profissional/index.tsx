@@ -4,7 +4,23 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Profissional({ profissional }) {
+interface IProfissional {
+  image: string;
+  name: string;
+  category: string;
+  description: string;
+  crm: string;
+  id: number;
+  especialidade: string;
+  disposicao: string;
+}
+
+interface ProfissionalProps {
+  profissional: IProfissional;
+  type: string;
+}
+
+function Profissional({ profissional, type }: ProfissionalProps) {
   const token = localStorage.getItem("token");
 
   function sucessoAoDeletar() {
@@ -14,7 +30,7 @@ function Profissional({ profissional }) {
   const base_URL = "https://horasvitais.herokuapp.com";
   const navigate = useNavigate();
 
-  const deleteProfissional = (id) => {
+  const deleteProfissional = (id: string) => {
     axios
       .delete(`${base_URL}/users?isOng=false/${id}`, {
         headers: {
@@ -30,7 +46,7 @@ function Profissional({ profissional }) {
   };
 
   return (
-    <div class="box-container">
+    <div className="box-container">
       <div
         className="profissionalImgContainer"
         onClick={navigateProfissionalPage}
