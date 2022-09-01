@@ -22,6 +22,7 @@ interface IProfissional{
 }
 
 function ListaDeProfissionais({ type }: IListaDeProfissionaisProps) {
+
   const { profissionaisLista, setProfissionaisLista, filtroDeProfissionais, setfiltroDeProfissionais } =
     useContext(ProfissionalContext);
 
@@ -39,6 +40,7 @@ function ListaDeProfissionais({ type }: IListaDeProfissionaisProps) {
     <Doctors>
       <ul>
         {filtroDeProfissionais.length > 0
+<<<<<<< HEAD
           ? filtroDeProfissionais.map((profissional: IProfissional) => (
                <li key={profissional.id}>
                 <h1>{profissional.name}</h1>

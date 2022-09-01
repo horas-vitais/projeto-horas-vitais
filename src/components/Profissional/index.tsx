@@ -1,22 +1,23 @@
 import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-interface IProfissional{
-  image: string,
-  name: string,
-  category: string,
-  description: string,
-  crm: string,
-  id: number,
-  especialidade: string
-  disposicao: string,
+interface IProfissional {
+  image: string;
+  name: string;
+  category: string;
+  description: string;
+  crm: string;
+  id: number;
+  especialidade: string;
+  disposicao: string;
 }
 
-interface ProfissionalProps{
-  profissional: IProfissional
-  type: string,
+interface ProfissionalProps {
+  profissional: IProfissional;
+  type: string;
 }
 
 function Profissional({ profissional, type }: ProfissionalProps) {
