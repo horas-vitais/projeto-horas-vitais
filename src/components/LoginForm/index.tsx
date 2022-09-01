@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { Context } from '../../contexts'
@@ -27,3 +28,8 @@ function LoginForm(){
 export default LoginForm
 
 
+=======
+const LoginForm = () => {};
+
+export default LoginForm;
+>>>>>>> e7e5ac672e18b06d4099451f6bc2df2967da437d

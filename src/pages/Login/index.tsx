@@ -1,3 +1,4 @@
+
 import LoginForm from "../../components/LoginForm";
 import { Background } from "./style";
 
@@ -33,3 +34,4 @@ export const Login = () => {
         </Background>
     )
 }
+
