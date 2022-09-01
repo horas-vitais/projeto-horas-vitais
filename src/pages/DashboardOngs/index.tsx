@@ -2,10 +2,9 @@ import { useContext, useEffect } from "react";
 import axios from "axios";
 
 import "./style";
-import { useState } from "react";
 import { ProfissionalContext } from "../../Providers/profissional";
-
-import Profissional from "../Profissional";
+import { Doctors } from "./style";
+import Profissional from "../../components/Profissional";
 
 function ListaDeProfissionais({ type }) {
   const { profissionaisLista, setProfissionaisLista, filtroDeProfissionais, setfiltroDeProfissionais } =
@@ -21,6 +20,7 @@ function ListaDeProfissionais({ type }) {
   }, []);
 
   return (
+    
     <Doctors>
       <ul>
         {filtroDeProfissionais.length > 0
@@ -34,6 +34,7 @@ function ListaDeProfissionais({ type }) {
             ))}
       </ul>
     </Doctors>
+    
   );
 }
 
