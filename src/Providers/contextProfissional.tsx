@@ -1,15 +1,61 @@
-import { createContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+  ReactNode,
+  SetStateAction,
+} from "react";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import axios from "axios";
 
-export const ProfissionalContext = createContext([]);
+interface ProfissionalContextProps {
+  children: ReactNode;
+}
 
-export const ProfissionalProvider = ({ children }) => {
-  const [ListaDeprofissionais, setListaDeProfissionais] = useState([]);
-  const [filtroDeProfissionais, setFiltroDeProfissionais] = useState([]);
+interface ProfissionalContextData {
+  listaDeProfissionais: IProfissional[];
+  profissionalsRequest: () => void;
+  addSelecao: (profissional: IProfissional) => void;
+  removerDaAreaSelecionados: (profissionalId: string) => void;
+  setListaDeProfissionais: React.Dispatch<SetStateAction<IProfissional[]>>;
+  filtroDeProfissionais: IProfissional[];
+  setFiltroDeProfissionais: React.Dispatch<SetStateAction<IProfissional[]>>;
+}
+
+interface IProfissional {
+  name?: string;
+  CPF: string;
+  areaAtuacao: string;
+  contato: string;
+  email: string;
+  id: number;
+  img: string;
+  isOng: boolean;
+  localidade?: string;
+  endereco?: string;
+  bairro?: string;
+  cidade?: string;
+  password: string;
+  registroProfissional: string;
+  description?: string;
+  disposicao: string;
+}
+
+export const ProfissionalContext = createContext({} as ProfissionalContextData);
+
+export const ProfissionalProvider = ({
+  children,
+}: ProfissionalContextProps) => {
+  const [listaDeProfissionais, setListaDeProfissionais] = useState<
+    IProfissional[]
+  >([]);
+
+  const [filtroDeProfissionais, setFiltroDeProfissionais] = useState<
+    IProfissional[]
+  >([]);
 
   const base_URL = "https://horasvitais.herokuapp.com";
 
@@ -30,20 +76,19 @@ export const ProfissionalProvider = ({ children }) => {
   const profissionalsRequest = () => {
     axios
       .get(`${base_URL}/users?isOng=false`)
-      .then((response) => setProfissionalList(response.data))
+      .then((response) => setListaDeProfissionais(response.data))
       .catch((err) => console.log(err));
   };
 
-  const addSelecao = (profissional) => {
-    const idUser = localStorage.getItem("id");
+  const addSelecao = (profissional: IProfissional) => {
     const token = localStorage.getItem("token");
 
     const novoUsuarioProfissional = {
-      image: profissional.image,
+      image: profissional.img,
       name: profissional.name,
-      category: profissional.category,
+      areaAtuacao: profissional.areaAtuacao,
       description: profissional.description,
-      crm: profissional.crm,
+      registroProfissional: profissional.registroProfissional,
       id: profissional.id,
     };
 
@@ -67,7 +112,7 @@ export const ProfissionalProvider = ({ children }) => {
     }
   };
 
-  const removerDaAreaSelecionados = (profissionalId) => {
+  const removerDaAreaSelecionados = (profissionalId: string) => {
     axios
       .delete(`${base_URL}/reserved/${profissionalId}`, {
         headers: {
@@ -88,7 +133,7 @@ export const ProfissionalProvider = ({ children }) => {
   return (
     <ProfissionalContext.Provider
       value={{
-        ListaDeprofissionais,
+        listaDeProfissionais,
         profissionalsRequest,
         addSelecao,
         removerDaAreaSelecionados,

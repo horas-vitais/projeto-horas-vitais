@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Register from "../pages/Register";
 
-const routesMain = () => {
+const RoutesMain = () => {
     return (
         <Routes>
             <Route path="register" element={<Register/>} />
@@ -9,4 +9,4 @@ const routesMain = () => {
     )
 };
 
-export default routesMain;
+export default RoutesMain;
