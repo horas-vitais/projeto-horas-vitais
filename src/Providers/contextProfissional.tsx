@@ -26,13 +26,21 @@ interface ProfissionalContextData {
 }
 
 interface IProfissional {
-  image: string;
-  name: string;
-  category: string;
-  description: string;
-  crm: string;
+  name?: string;
+  CPF: string;
+  areaAtuacao: string;
+  contato: string;
+  email: string;
   id: number;
-  especialidade: string;
+  img: string;
+  isOng: boolean;
+  localidade?: string;
+  endereco?: string;
+  bairro?: string;
+  cidade?: string;
+  password: string;
+  registroProfissional: string;
+  description?: string;
   disposicao: string;
 }
 
@@ -44,6 +52,7 @@ export const ProfissionalProvider = ({
   const [listaDeProfissionais, setListaDeProfissionais] = useState<
     IProfissional[]
   >([]);
+
   const [filtroDeProfissionais, setFiltroDeProfissionais] = useState<
     IProfissional[]
   >([]);
@@ -75,11 +84,11 @@ export const ProfissionalProvider = ({
     const token = localStorage.getItem("token");
 
     const novoUsuarioProfissional = {
-      image: profissional.image,
+      image: profissional.img,
       name: profissional.name,
-      category: profissional.category,
+      areaAtuacao: profissional.areaAtuacao,
       description: profissional.description,
-      crm: profissional.crm,
+      registroProfissional: profissional.registroProfissional,
       id: profissional.id,
     };
 

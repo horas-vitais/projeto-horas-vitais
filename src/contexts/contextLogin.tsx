@@ -27,6 +27,7 @@ export const ContextProvider = ({ children }: ProviderChildren) => {
       .then((res) => {
         setUser(res.data.user);
         localStorage.setItem("@HorasDeVida:Token", res.data.accessToken);
+        localStorage.setItem("@HorasDeVida:Id", res.data.user.id);
       })
       .catch((err) =>
         toast.error("Ops! Algo deu errado.", {
@@ -37,7 +38,7 @@ export const ContextProvider = ({ children }: ProviderChildren) => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-        }),
+        })
       );
   };
   return (

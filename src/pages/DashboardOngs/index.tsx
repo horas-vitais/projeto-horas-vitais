@@ -2,25 +2,31 @@ import { useContext, useEffect } from "react";
 import axios from "axios";
 import "./style";
 import { ProfissionalContext } from "../../Providers/contextProfissional";
-import { Doctors } from "./style";
+import { DivClientReview, Doctors } from "./style";
 import Profissional from "../../components/Profissional";
-
-interface IListaDeProfissionaisProps {
-  type: string;
-}
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 interface IProfissional {
-  image: string;
-  name: string;
-  category: string;
-  description: string;
-  crm: string;
+  name?: string;
+  CPF: string;
+  areaAtuacao: string;
+  contato: string;
+  email: string;
   id: number;
-  especialidade: string;
+  img: string;
+  isOng: boolean;
+  localidade?: string;
+  endereco?: string;
+  bairro?: string;
+  cidade?: string;
+  password: string;
+  registroProfissional: string;
+  description?: string;
   disposicao: string;
 }
 
-function ListaDeProfissionais({ type }: IListaDeProfissionaisProps) {
+function ListaDeProfissionais() {
   const {
     listaDeProfissionais,
     setListaDeProfissionais,
@@ -38,31 +44,38 @@ function ListaDeProfissionais({ type }: IListaDeProfissionaisProps) {
   }, []);
 
   return (
-    <Doctors>
-      <ul>
-        {filtroDeProfissionais.length > 0
-          ? filtroDeProfissionais.map((profissional: IProfissional) => (
-              <li key={profissional.id}>
-                <h1>{profissional.name}</h1>
-                <Profissional
-                  key={profissional.id}
-                  type={type}
-                  profissional={profissional}
-                />
-              </li>
-            ))
-          : listaDeProfissionais.map((profissional: IProfissional) => (
-              <li key={profissional.id}>
-                <h1>{profissional.name}</h1>
-                <Profissional
-                  key={profissional.id}
-                  type={type}
-                  profissional={profissional}
-                />
-              </li>
-            ))}
-      </ul>
-    </Doctors>
+    <>
+      <Header />
+      <Doctors>
+        <h2>Doadores</h2>
+        <ul>
+          {filtroDeProfissionais.length > 0
+            ? filtroDeProfissionais.map((profissional: IProfissional) => (
+                <li key={profissional.id}>
+                  <h1>{profissional.name}</h1>
+                  <Profissional
+                    key={profissional.id}
+                    profissional={profissional}
+                  />
+                </li>
+              ))
+            : listaDeProfissionais.map((profissional: IProfissional) => (
+                <li key={profissional.id}>
+                  <h1>{profissional.name}</h1>
+                  <Profissional
+                    key={profissional.id}
+                    profissional={profissional}
+                  />
+                </li>
+              ))}
+        </ul>
+      </Doctors>
+      <DivClientReview>
+        <h2>Client</h2>
+        <h2 id="colorVerde">Review</h2>
+      </DivClientReview>
+      <Footer />
+    </>
   );
 }
 
