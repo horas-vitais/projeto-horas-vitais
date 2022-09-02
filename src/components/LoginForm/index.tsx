@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Context } from "../../contexts";
+import { Context } from "../../contexts/contextLogin";
 import { Formulario } from "./style";
 
 function LoginForm() {

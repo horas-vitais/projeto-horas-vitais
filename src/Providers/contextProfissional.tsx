@@ -32,6 +32,8 @@ interface IProfissional {
   description: string;
   crm: string;
   id: number;
+  especialidade: string;
+  disposicao: string;
 }
 
 export const ProfissionalContext = createContext({} as ProfissionalContextData);
