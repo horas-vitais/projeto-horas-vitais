@@ -1,38 +1,50 @@
-import { createContext, useState, useEffect, ReactNode, SetStateAction} from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+  ReactNode,
+  SetStateAction,
+} from "react";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import axios from "axios";
 
-interface ProfissionalContextProps{
-  children: ReactNode
+interface ProfissionalContextProps {
+  children: ReactNode;
 }
 
-interface ProfissionalContextData{
-  ListaDeprofissionais: IProfissional[],
-  profissionalsRequest: () => void,
-  addSelecao: (profissional: IProfissional) => void,
-  removerDaAreaSelecionados: (profissionalId: string) => void,
-  setListaDeProfissionais: React.Dispatch<SetStateAction<IProfissional[]>>
-  filtroDeProfissionais: IProfissional[],
-  setFiltroDeProfissionais: React.Dispatch<SetStateAction<IProfissional[]>>
+interface ProfissionalContextData {
+  listaDeProfissionais: IProfissional[];
+  profissionalsRequest: () => void;
+  addSelecao: (profissional: IProfissional) => void;
+  removerDaAreaSelecionados: (profissionalId: string) => void;
+  setListaDeProfissionais: React.Dispatch<SetStateAction<IProfissional[]>>;
+  filtroDeProfissionais: IProfissional[];
+  setFiltroDeProfissionais: React.Dispatch<SetStateAction<IProfissional[]>>;
 }
 
-interface IProfissional{
-  image: string,
-  name: string,
-  category: string,
-  description: string,
-  crm: string,
-  id: number,
+interface IProfissional {
+  image: string;
+  name: string;
+  category: string;
+  description: string;
+  crm: string;
+  id: number;
 }
 
 export const ProfissionalContext = createContext({} as ProfissionalContextData);
 
-export const ProfissionalProvider = ({ children }: ProfissionalContextProps) => {
-  const [ListaDeprofissionais, setListaDeProfissionais] = useState<IProfissional[]>([]);
-  const [filtroDeProfissionais, setFiltroDeProfissionais] = useState<IProfissional[]>([]);
+export const ProfissionalProvider = ({
+  children,
+}: ProfissionalContextProps) => {
+  const [listaDeProfissionais, setListaDeProfissionais] = useState<
+    IProfissional[]
+  >([]);
+  const [filtroDeProfissionais, setFiltroDeProfissionais] = useState<
+    IProfissional[]
+  >([]);
 
   const base_URL = "https://horasvitais.herokuapp.com";
 
@@ -110,7 +122,7 @@ export const ProfissionalProvider = ({ children }: ProfissionalContextProps) => 
   return (
     <ProfissionalContext.Provider
       value={{
-        ListaDeprofissionais,
+        listaDeProfissionais,
         profissionalsRequest,
         addSelecao,
         removerDaAreaSelecionados,

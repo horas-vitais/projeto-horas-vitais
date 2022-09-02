@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import React from "react";
 import { ToastContainer } from "react-toastify";
-import "./App.css";
-import { Login } from "./pages/Login";
 import "react-toastify/dist/ReactToastify.min.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";

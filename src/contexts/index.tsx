@@ -21,8 +21,6 @@ export const Context = createContext({} as ContextProviderData);
 export const ContextProvider = ({ children }: ProviderChildren) => {
   const [user, setUser] = useState({} as IUser);
 
-  const [user, setUser] = useState({} as IUser);
-
   const onSubmitFunction = (data: FieldValues) => {
     axios
       .post("https://horasvitais.herokuapp.com/login", data)
