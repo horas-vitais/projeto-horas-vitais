@@ -2,7 +2,6 @@ import { Button } from "../Button/styles";
 import Input from "../Input";
 import { FormContainer } from "./styles";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -33,11 +32,11 @@ interface IRegisterFormProps {
 const RegisterForm = ({isOng, setIsOng}: IRegisterFormProps) => {
     const userSchema = yup.object().shape({
         nome: yup.string().required("Nome obrigatório"),
-        cpf: yup.string().required("CPF obrigatório"),
+        CPF: yup.string().required("CPF obrigatório").min(11,"CPF inválido"),
         registroProfissional: yup.string().required("Registro profissional obrigatório"),
         email: yup.string().required("Email obrigatório"),
         password: yup.string().required("Senha obrigatória"),
-        confirmPassword: yup.string().required("Confirmação de senha obrigatória").oneOf([yup.ref("password")]),
+        confirmPassword: yup.string().required("Confirmação de senha obrigatória").oneOf([yup.ref("password")], "As senhas devem ser iguais"),
         areaDeAtuacao: yup.string().required("Área de atuação obrigatória")
     })
 
@@ -68,7 +67,6 @@ const RegisterForm = ({isOng, setIsOng}: IRegisterFormProps) => {
             return err
         })
         
-        
         toast.promise(promise,{
             error: "Usuário ja cadastrado",
             pending: "Carregando, aguarde!",
@@ -93,21 +91,22 @@ const RegisterForm = ({isOng, setIsOng}: IRegisterFormProps) => {
                 :
                 <>
                     <Input type="text" id="nome" label="Nome Completo:" register={register} error={errors.nome?.message}/>
-                    <Input type="text" id="cpf" label="CPF:" register={register} error={errors.cpf?.message}/>
+                    <Input type="text" id="CPF" label="CPF:" register={register} error={errors.cpf?.message}/>
                     <Input type="text" id="registroProfissional" label="Registro Profissional:" register={register} error={errors.registroProfissional?.message}/>
                     <Input type="email" id="email" label="Email:" register={register} error={errors.email?.message}/>
                     <Input type="password" id="password" label="Senha:" register={register} error={errors.password?.message}/>
                     <Input type="password" id="confirmPassword" label="Confirmar senha:" register={register} error={errors.confirmPassword?.message}/>
                     <Input type="text" id="areaDeAtuacao" label="Área de atuação:" register={register} error={errors.areaDeAtuacao?.message}/>
-                    <p>Você é uma instituição? <button onClick={(e) => {
+                    <p>Você é uma instituição? <button className="redirect_btn" onClick={(e) => {
                         e.preventDefault()
                         setIsOng(true)
-                    }}>Clique aqui</button></p>
+                    }}>Clique aqui.</button></p>
                 </>
 
             }
+            <p>Já tem login ? <Link to="/login">Clique aqui.</Link></p>
+            
             <Button type="submit">CADASTRAR</Button>
-            <p>Já tem login ?</p>
         </FormContainer>
     )
 };

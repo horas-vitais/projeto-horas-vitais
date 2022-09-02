@@ -1,9 +1,9 @@
-import Register from "./pages/Register";
+import Routes from "./routes";
 
 function App() {
   return (
     <div className="App">
-      <Register />
+      <Routes />
     </div>
   );
 }

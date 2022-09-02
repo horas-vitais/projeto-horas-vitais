@@ -7,6 +7,8 @@ const RegisterContainer = styled.div`
 
     width: 100vw;
     min-height: 100vh;
+
+    overflow-x: hidden;
 `
 
 const HeaderRegister = styled.div`
@@ -23,6 +25,13 @@ const HeaderRegister = styled.div`
     }
 
     button {
+        color: var(--grey-1);
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        background-color: transparent;
         position: absolute;
         left: 1.5rem;
         top: 1.5rem;

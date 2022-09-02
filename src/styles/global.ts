@@ -13,6 +13,12 @@ const GlobalStyle = createGlobalStyle`
     --border: .2rem solid var(--green);
   }
 
+  .App {
+    max-width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
   * {
     font-family: 'Poppins', sans-serif;
     padding: 0;

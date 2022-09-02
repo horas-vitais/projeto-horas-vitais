@@ -15,8 +15,23 @@ const FormContainer = styled.form`
 
     border: 2px solid var(--green);
 
+    .redirect_btn {
+        font-size: 1rem;
+        color: var(--green);
+        background-color: transparent;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
     p {
         color: var(--grey-1);
+    }
+
+    a {
+        cursor: pointer;
+        text-decoration: none;
+        color: var(--green);
+        font-weight: bold;
     }
 `
 export { FormContainer }

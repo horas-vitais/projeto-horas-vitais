@@ -1,3 +1,12 @@
-const routes = () => {};
+import { Route, Routes } from "react-router-dom";
+import Register from "../pages/Register";
 
-export default routes;
+const routesMain = () => {
+    return (
+        <Routes>
+            <Route path="register" element={<Register/>} />
+        </Routes>
+    )
+};
+
+export default routesMain;
