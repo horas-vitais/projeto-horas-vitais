@@ -3,7 +3,6 @@ import RegisterForm from "../../components/RegisterForm";
 import { HeaderRegister, RegisterContainer, DivFlexDirection } from "./styles";
 import ImgLogin from "../../assets/logoLogin.svg"
 import backArrow from "../../assets/backArrow.svg"
-import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -31,19 +30,7 @@ const Register = () => {
                 <img src={ImgLogin} alt="" />
                 <RegisterForm isOng={isOng} setIsOng={setIsOng}/>
             </DivFlexDirection>
-                <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false} 
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    />
-                    {/* Same as */}
-                    <ToastContainer />
+
         </RegisterContainer>
     )
 };
