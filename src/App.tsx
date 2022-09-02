@@ -3,37 +3,17 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import ListaDeProfissionais from "./pages/DashboardOngs";
+import { DashboardProfissionalSaude } from "./pages/DashboardProfissionalSaude";
+import { Login } from "./pages/Login";
+import { ProfissionalProvider } from "./Providers/contextProfissional";
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <header className="App-header">
-        <ToastContainer
-          theme="colored"
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Footer />
+      <ProfissionalProvider>
+        <ListaDeProfissionais />
+      </ProfissionalProvider>
     </div>
   );
 }

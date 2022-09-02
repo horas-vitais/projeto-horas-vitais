@@ -4,22 +4,29 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 interface IProfissional {
-  image: string;
-  name: string;
-  category: string;
-  description: string;
-  crm: string;
+  name?: string;
+  CPF: string;
+  areaAtuacao: string;
+  contato: string;
+  email: string;
   id: number;
-  especialidade: string;
+  img: string;
+  isOng: boolean;
+  localidade?: string;
+  endereco?: string;
+  bairro?: string;
+  cidade?: string;
+  password: string;
+  registroProfissional: string;
+  description?: string;
   disposicao: string;
 }
 
 interface ProfissionalProps {
   profissional: IProfissional;
-  type: string;
 }
 
-function Profissional({ profissional, type }: ProfissionalProps) {
+function Profissional({ profissional }: ProfissionalProps) {
   const token = localStorage.getItem("token");
 
   function sucessoAoDeletar() {
@@ -27,7 +34,6 @@ function Profissional({ profissional, type }: ProfissionalProps) {
   }
 
   const base_URL = "https://horasvitais.herokuapp.com";
-  const navigate = useNavigate();
 
   const deleteProfissional = (id: string) => {
     axios
@@ -40,27 +46,18 @@ function Profissional({ profissional, type }: ProfissionalProps) {
       .catch((err) => console.log(err));
   };
 
-  const navigateProfissionalPage = () => {
-    navigate(`/users?isOng=false/${profissional.id}`);
-  };
-
   return (
     <div className="box-container">
-      <div
-        className="profissionalImgContainer"
-        onClick={navigateProfissionalPage}
-      >
+      <div className="profissionalImgContainer">
         <img
           className="profissionalImg"
-          src={profissional.image}
+          src={profissional.img}
           alt={profissional.name}
         />
       </div>
       <div className="informacoesDoProfissional">
-        <h3 className="nomeDoProfissional" onClick={navigateProfissionalPage}>
-          {profissional.name}
-        </h3>
-        <span>{profissional.especialidade}</span>
+        <h3 className="nomeDoProfissional">{profissional.name}</h3>
+        <span>{profissional.areaAtuacao}</span>
         <h4 className="escritaDoHorario">Horário disponível</h4>
         <p className="horarioDisponivel">{profissional.disposicao}</p>
       </div>
