@@ -4,14 +4,16 @@ export const Doctors = styled.section`
   height: 65vh;
   margin-top: 8rem;
   ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    width: 90%;
+    display: flex;
     gap: 2rem;
     margin-left: 5%;
+    overflow: auto;
+    padding: 2rem;
   }
   li {
     list-style: none;
-    width: 150px;
+    min-width: 150px;
     text-align: center;
     background: #fff;
     border-radius: 0.5rem;

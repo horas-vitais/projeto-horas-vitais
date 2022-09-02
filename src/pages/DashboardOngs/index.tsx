@@ -61,7 +61,6 @@ function ListaDeProfissionais() {
               ))
             : listaDeProfissionais.map((profissional: IProfissional) => (
                 <li key={profissional.id}>
-                  <h1>{profissional.name}</h1>
                   <Profissional
                     key={profissional.id}
                     profissional={profissional}
