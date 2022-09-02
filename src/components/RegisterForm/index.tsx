@@ -6,6 +6,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
+import { api } from "../../services/api";
+import { toast } from "react-toastify";
 
 export interface IUserRegister {
     nome: string,
@@ -17,7 +19,8 @@ export interface IUserRegister {
     areaDeAtuacao: string,
     endereco: string,
     bairro: string,
-    cidade: string
+    cidade: string,
+    isOng?: boolean,
 }
 
 interface IRegisterFormProps {
@@ -42,7 +45,7 @@ const RegisterForm = ({isOng, setIsOng}: IRegisterFormProps) => {
         nome: yup.string().required("Nome obrigatório"),
         email: yup.string().required("Email obrigatório"),
         password: yup.string().required("Senha obrigatória"),
-        confirmPassword: yup.string().required("Confirmação de senha obrigatória").oneOf([yup.ref("password")]),
+        confirmPassword: yup.string().required("Confirmação de senha obrigatória").oneOf([yup.ref("password")], "As senhas devem ser iguais"),
         endereco: yup.string().required("Endereço obrigatório"),
         bairro: yup.string().required("Bairro obrigatório"),
         cidade : yup.string().required("Cidade obrigatória")
@@ -54,8 +57,23 @@ const RegisterForm = ({isOng, setIsOng}: IRegisterFormProps) => {
     })
 
 
-    function handleRegister(data: IUserRegister){
-        console.log(data)
+    function handleRegister(data: IUserRegister){ 
+        data.isOng = isOng
+
+        const promise = api.post("/register", data)
+        .then(res => {
+            return res
+        })
+        .catch(err => {
+            return err
+        })
+        
+        
+        toast.promise(promise,{
+            error: "Usuário ja cadastrado",
+            pending: "Carregando, aguarde!",
+            success: "Conta criada com sucesso!"
+        })
     }
 
     return (

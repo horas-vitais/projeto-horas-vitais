@@ -13,6 +13,8 @@ const FormContainer = styled.form`
 
     box-shadow: 0px 4px 35px rgba(41, 82, 144, 0.25);
 
+    border: 2px solid var(--green);
+
     p {
         color: var(--grey-1);
     }
