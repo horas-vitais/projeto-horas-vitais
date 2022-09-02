@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import axios from "axios";
 import "./style";
-import { ProfissionalContext } from "../../Providers/profissional";
+import { ProfissionalContext } from "../../Providers/contextProfissional";
 import { Doctors } from "./style";
 import Profissional from "../../components/Profissional";
 
