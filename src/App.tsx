@@ -12,8 +12,9 @@ import { ProfissionalProvider } from "./Providers/contextProfissional";
 function App() {
   return (
     <div className="App">
-      <Routes />
+      <ToastContainer />
       <ProfissionalProvider>
+        <Routes />
         <ListaDeProfissionais />
       </ProfissionalProvider>
     </div>

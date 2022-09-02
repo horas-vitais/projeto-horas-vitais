@@ -58,19 +58,19 @@ const RegisterForm = ({isOng, setIsOng}: IRegisterFormProps) => {
 
     function handleRegister(data: IUserRegister){ 
         data.isOng = isOng
-
-        const promise = api.post("/register", data)
-        .then(res => {
-            return res
-        })
-        .catch(err => {
-            return err
-        })
         
-        toast.promise(promise,{
+        toast.promise(api.post("/register", data),{
             error: "Usuário ja cadastrado",
             pending: "Carregando, aguarde!",
             success: "Conta criada com sucesso!"
+        }, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined, 
         })
     }
 
