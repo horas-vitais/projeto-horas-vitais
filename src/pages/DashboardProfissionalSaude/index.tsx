@@ -5,6 +5,7 @@ import {
   BotaoAlterarFoto,
   Container,
   ContainerModal,
+  DivNomeUsuario,
   DivSections,
   DivUsuarioBotao,
   ImagemFundo,
@@ -124,7 +125,7 @@ export const DashboardProfissionalSaude = () => {
           <ImagemFundo src={fundo} alt="fundo" />
         </div>
 
-        <div>
+        <DivNomeUsuario>
           {usuario?.img ? (
             <>
               <ImagemPerfil src={usuario?.img} alt="Foto perfil" />
@@ -165,7 +166,7 @@ export const DashboardProfissionalSaude = () => {
           ) : (
             <></>
           )}
-        </div>
+        </DivNomeUsuario>
 
         <DivUsuarioBotao>
           <h2>Usuário: {usuario?.name}</h2>
