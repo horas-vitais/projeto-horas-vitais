@@ -5,7 +5,7 @@ import GlobalStyle from "./styles/global";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { ContextProvider } from "./contexts/contextLogin";
-import Home from "./pages/Home";
+import RoutesMain from "./routes";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,12 +13,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ContextProvider>
-      <Home></Home>
       <BrowserRouter>
-        <GlobalStyle/>
-          <App />
+        <GlobalStyle />
+        <RoutesMain />
       </BrowserRouter>
-  </ContextProvider>
+    </ContextProvider>
   </React.StrictMode>
 );
 reportWebVitals();
