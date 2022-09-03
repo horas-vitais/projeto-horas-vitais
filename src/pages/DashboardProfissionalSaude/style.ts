@@ -12,6 +12,10 @@ export const Container = styled.div`
   margin-top: 10rem;
   position: relative;
 
+  p {
+    margin-top: 25px;
+  }
+
   @media (max-width: 720px) {
     width: 95%;
     height: 600px;
@@ -26,12 +30,14 @@ export const BotaoAlterarFoto = styled.button`
   position: absolute;
   left: 22%;
   bottom: 49%;
+  padding: 10px;
 
   :hover {
     background-color: #50f6c1;
   }
 
   @media (max-width: 1500px) {
+    padding: 2px;
     position: absolute;
     left: 30%;
     bottom: 87%;
@@ -57,7 +63,7 @@ export const DivUsuarioBotao = styled.div`
 export const ImagemPerfil = styled.img`
   width: 10%;
 
-  border: solid 7px black;
+  border: solid 7px var(--green);
   border-radius: 40%;
 
   position: absolute;
@@ -128,13 +134,26 @@ export const ModalFotoPerfil = styled.div`
 
   padding: 2rem;
 
+  input {
+    padding: 10px;
+  }
+
+  button {
+    padding: 10px;
+  }
+
+  button:hover {
+    background-color: var(--green);
+  }
+
   #botaox {
     position: absolute;
     top: 2px;
-    right: 3px;
+    right: 9px;
     border: none;
     background-color: transparent;
-    border-radius: 50%;
+    padding: 5px;
+    border-radius: 40%;
   }
   #botaox:hover {
     background-color: #028b30;
@@ -161,6 +180,7 @@ export const BotaoAlterar = styled.button`
   border-radius: 5px;
   background-color: transparent;
   cursor: pointer;
+  padding: 10px;
 
   :hover {
     background-color: #50f6c1;

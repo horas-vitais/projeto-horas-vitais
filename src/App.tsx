@@ -15,7 +15,7 @@ function App() {
       <ToastContainer />
       <ProfissionalProvider>
         <DashboardProfissionalSaude />
-
+        <Login />
         <Routes />
         <ListaDeProfissionais />
       </ProfissionalProvider>

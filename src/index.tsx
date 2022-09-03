@@ -6,6 +6,7 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { ContextProvider } from "./contexts/contextLogin";
 import Home from "./pages/Home";
+import App from "./App";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,10 +16,10 @@ root.render(
     <ContextProvider>
       <Home></Home>
       <BrowserRouter>
-        <GlobalStyle/>
-          <App />
+        <GlobalStyle />
+        <App />
       </BrowserRouter>
-  </ContextProvider>
+    </ContextProvider>
   </React.StrictMode>
 );
 reportWebVitals();
