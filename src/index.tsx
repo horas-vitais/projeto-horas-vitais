@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import GlobalStyle from "./styles/global";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ContextProvider } from "./contexts/contextLogin";
+import Home from "./pages/Home";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,6 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ContextProvider>
+      <Home></Home>
       <BrowserRouter>
         <GlobalStyle/>
           <App />
