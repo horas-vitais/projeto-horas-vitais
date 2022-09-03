@@ -3,7 +3,7 @@ import { FooterContainer } from "./styles";
 const Footer = () => {
   return (
     <FooterContainer>
-      <span>© 2021-2022 | Horas Vitais. Todos Os Direitos Reservados.</span>
+      <span>© 2022-20XX | Horas Vitais. Todos Os Direitos Reservados.</span>
     </FooterContainer>
   );
 };

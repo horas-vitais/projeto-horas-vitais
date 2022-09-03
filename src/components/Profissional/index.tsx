@@ -47,7 +47,7 @@ function Profissional({ profissional }: ProfissionalProps) {
   };
 
   return (
-    <div className="box-container">
+    <>
       <div className="profissionalImgContainer">
         <img
           className="profissionalImg"
@@ -61,8 +61,8 @@ function Profissional({ profissional }: ProfissionalProps) {
         <h4 className="escritaDoHorario">Horário disponível</h4>
         <p className="horarioDisponivel">{profissional.disposicao}</p>
       </div>
-      <button>Selecionar</button>
-    </div>
+      <button>SELECIONAR</button>
+    </>
   );
 }
 

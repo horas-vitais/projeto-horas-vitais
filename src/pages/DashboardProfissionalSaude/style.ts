@@ -122,6 +122,23 @@ export const ModalFotoPerfil = styled.div`
   background-color: #baf4cc;
 
   position: absolute;
+
+  border: solid 1px white;
+  border-radius: 20px;
+
+  padding: 2rem;
+
+  #botaox {
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+  }
+  #botaox:hover {
+    background-color: #028b30;
+  }
 `;
 
 export const ContainerModal = styled.div`

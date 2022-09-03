@@ -151,16 +151,21 @@ export const DashboardProfissionalSaude = () => {
           {modalFotoPerfil ? (
             <ContainerModal>
               <ModalFotoPerfil>
-                <h3>Envie o caminho da foto de perfil:</h3>
-                <input
-                  type="text"
-                  placeholder="Envie o caminho da foto de perfil"
-                  onChange={(e) => setInputFotoPerfil(e.target.value)}
-                />
-                <button onClick={trocarFotoDePerfil}>Enviar</button>
-                <button onClick={() => setModalFotoPerfil(!modalFotoPerfil)}>
-                  X
-                </button>
+                <div>
+                  <h3>Envie o caminho da foto :</h3>
+                  <input
+                    type="text"
+                    placeholder="Envie o caminho da foto"
+                    onChange={(e) => setInputFotoPerfil(e.target.value)}
+                  />
+                  <button onClick={trocarFotoDePerfil}>Enviar</button>
+                  <button
+                    id="botaox"
+                    onClick={() => setModalFotoPerfil(!modalFotoPerfil)}
+                  >
+                    X
+                  </button>
+                </div>
               </ModalFotoPerfil>
             </ContainerModal>
           ) : (
@@ -184,7 +189,10 @@ export const DashboardProfissionalSaude = () => {
                     onChange={(e) => setInputNome(e.target.value)}
                   />
                   <button onClick={trocarNome}>Enviar</button>
-                  <button onClick={() => setModalNomePerfil(!modalNomePerfil)}>
+                  <button
+                    id="botaox"
+                    onClick={() => setModalNomePerfil(!modalNomePerfil)}
+                  >
                     X
                   </button>
                 </div>
@@ -212,7 +220,7 @@ export const DashboardProfissionalSaude = () => {
               <ContainerModal>
                 <ModalFotoPerfil>
                   <div>
-                    <h2>Alterar localidade</h2>
+                    <h2>Alterar Cidade</h2>
                     <input
                       type="text"
                       placeholder="Alterar Localidade"
@@ -220,6 +228,7 @@ export const DashboardProfissionalSaude = () => {
                     />
                     <button onClick={trocarLocalidade}>Enviar</button>
                     <button
+                      id="botaox"
                       onClick={() => setModalLocalidade(!modalLocalidade)}
                     >
                       X
@@ -254,7 +263,10 @@ export const DashboardProfissionalSaude = () => {
                       onChange={(e) => setInputContato(e.target.value)}
                     />
                     <button onClick={trocarContato}>Enviar</button>
-                    <button onClick={() => setModalContato(!modalContato)}>
+                    <button
+                      id="botaox"
+                      onClick={() => setModalContato(!modalContato)}
+                    >
                       X
                     </button>
                   </div>
