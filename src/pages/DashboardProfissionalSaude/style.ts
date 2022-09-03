@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 85%;
-  max-height: 500px;
+  height: 600px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -11,6 +11,10 @@ export const Container = styled.div`
   border-radius: 20px;
   margin-top: 10rem;
   position: relative;
+
+  p {
+    margin-top: 25px;
+  }
 
   @media (max-width: 720px) {
     width: 95%;
@@ -25,9 +29,15 @@ export const BotaoAlterarFoto = styled.button`
   cursor: pointer;
   position: absolute;
   left: 22%;
-  bottom: 43%;
+  bottom: 49%;
+  padding: 10px;
 
-  @media (max-width: 720px) {
+  :hover {
+    background-color: #50f6c1;
+  }
+
+  @media (max-width: 1500px) {
+    padding: 2px;
     position: absolute;
     left: 30%;
     bottom: 87%;
@@ -53,14 +63,14 @@ export const DivUsuarioBotao = styled.div`
 export const ImagemPerfil = styled.img`
   width: 10%;
 
-  border: solid 12px white;
+  border: solid 7px var(--green);
   border-radius: 40%;
 
   position: absolute;
-  bottom: 210px;
+  bottom: 290px;
   left: 10%;
 
-  @media (max-width: 720px) {
+  @media (max-width: 1500px) {
     top: 5%;
     width: 15%;
   }
@@ -115,9 +125,39 @@ export const ModalFotoPerfil = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: #f4f1da;
+  background-color: #baf4cc;
 
   position: absolute;
+
+  border: solid 1px white;
+  border-radius: 20px;
+
+  padding: 2rem;
+
+  input {
+    padding: 10px;
+  }
+
+  button {
+    padding: 10px;
+  }
+
+  button:hover {
+    background-color: var(--green);
+  }
+
+  #botaox {
+    position: absolute;
+    top: 2px;
+    right: 9px;
+    border: none;
+    background-color: transparent;
+    padding: 5px;
+    border-radius: 40%;
+  }
+  #botaox:hover {
+    background-color: #028b30;
+  }
 `;
 
 export const ContainerModal = styled.div`
@@ -140,9 +180,18 @@ export const BotaoAlterar = styled.button`
   border-radius: 5px;
   background-color: transparent;
   cursor: pointer;
+  padding: 10px;
+
+  :hover {
+    background-color: #50f6c1;
+  }
 `;
 
 export const AreaAtuacao = styled.span`
   position: absolute;
   margin-left: 15%;
+`;
+
+export const DivNomeUsuario = styled.div`
+  margin-top: 2rem;
 `;

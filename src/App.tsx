@@ -14,6 +14,8 @@ function App() {
     <div className="App">
       <ToastContainer />
       <ProfissionalProvider>
+        <DashboardProfissionalSaude />
+        <Login />
         <Routes />
         <ListaDeProfissionais />
       </ProfissionalProvider>

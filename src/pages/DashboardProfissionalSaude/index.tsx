@@ -5,6 +5,7 @@ import {
   BotaoAlterarFoto,
   Container,
   ContainerModal,
+  DivNomeUsuario,
   DivSections,
   DivUsuarioBotao,
   ImagemFundo,
@@ -17,7 +18,9 @@ import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-
+import { toast } from "react-toastify";
+import Switch from "@mui/material/Switch";
+import * as React from "react";
 interface PerfilUsuario {
   CPF: number;
   areaAtuacao: string;
@@ -30,9 +33,12 @@ interface PerfilUsuario {
   img?: string;
   localidade?: string;
   contato?: string;
+  disponivel: boolean;
 }
 
 export const DashboardProfissionalSaude = () => {
+  const [checked, setChecked] = React.useState(true);
+
   const [usuario, setUsuario] = useState<PerfilUsuario>();
 
   const [modalFotoPerfil, setModalFotoPerfil] = useState(false);
@@ -52,70 +58,213 @@ export const DashboardProfissionalSaude = () => {
     api.get(`/users/${id}`).then((response) => setUsuario(response.data));
   }, []);
 
+  useEffect(() => {
+    const token = localStorage.getItem("@HorasDeVida:Token");
+
+    api
+      .patch(
+        `/users/${usuario?.id}`,
+        {
+          disponivel: `${checked}`,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        toast.success("Disponibilidade alterada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((res) => {
+        toast.error("Ops , algo deu errado!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  }, [checked]);
+
   function trocarFotoDePerfil() {
     const token = localStorage.getItem("@HorasDeVida:Token");
 
-    api.patch(
-      `/users/${usuario?.id}`,
-      {
-        img: `${inputFotoPerfil}`,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
+    api
+      .patch(
+        `/users/${usuario?.id}`,
+        {
+          img: `${inputFotoPerfil}`,
         },
-      }
-    );
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        toast.success("Foto alterada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setModalFotoPerfil(!ModalFotoPerfil);
+      })
+      .catch((res) => {
+        toast.error("Ops , algo deu errado!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setModalFotoPerfil(!ModalFotoPerfil);
+      });
   }
 
   function trocarNome() {
     const token = localStorage.getItem("@HorasDeVida:Token");
 
-    api.patch(
-      `/users/${usuario?.id}`,
-      {
-        name: `${inputNome}`,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
+    api
+      .patch(
+        `/users/${usuario?.id}`,
+        {
+          name: `${inputNome}`,
         },
-      }
-    );
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        toast.success("Nome alterado com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setModalFotoPerfil(!ModalFotoPerfil);
+      })
+      .catch((res) => {
+        toast.error("Ops , algo deu errado!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setModalFotoPerfil(!ModalFotoPerfil);
+      });
   }
 
   function trocarLocalidade() {
     const token = localStorage.getItem("@HorasDeVida:Token");
 
-    api.patch(
-      `/users/${usuario?.id}`,
-      {
-        localidade: `${inputLocalidade}`,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
+    api
+      .patch(
+        `/users/${usuario?.id}`,
+        {
+          localidade: `${inputLocalidade}`,
         },
-      }
-    );
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        toast.success("Localidade alterada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setModalFotoPerfil(!ModalFotoPerfil);
+      })
+      .catch((res) => {
+        toast.error("Ops , algo deu errado!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setModalFotoPerfil(!ModalFotoPerfil);
+      });
   }
 
   function trocarContato() {
     const token = localStorage.getItem("@HorasDeVida:Token");
 
-    api.patch(
-      `/users/${usuario?.id}`,
-      {
-        contato: `${inputContato}`,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
+    api
+      .patch(
+        `/users/${usuario?.id}`,
+        {
+          contato: `${inputContato}`,
         },
-      }
-    );
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        toast.success("Contato alterada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setModalFotoPerfil(!ModalFotoPerfil);
+      })
+      .catch((res) => {
+        toast.error("Ops , algo deu errado!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setModalFotoPerfil(!ModalFotoPerfil);
+      });
   }
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(event.target.checked);
+  };
+  console.log(checked);
   return (
     <>
       <Header />
@@ -124,7 +273,7 @@ export const DashboardProfissionalSaude = () => {
           <ImagemFundo src={fundo} alt="fundo" />
         </div>
 
-        <div>
+        <DivNomeUsuario>
           {usuario?.img ? (
             <>
               <ImagemPerfil src={usuario?.img} alt="Foto perfil" />
@@ -150,22 +299,27 @@ export const DashboardProfissionalSaude = () => {
           {modalFotoPerfil ? (
             <ContainerModal>
               <ModalFotoPerfil>
-                <h3>Envie o caminho da foto de perfil:</h3>
-                <input
-                  type="text"
-                  placeholder="Envie o caminho da foto de perfil"
-                  onChange={(e) => setInputFotoPerfil(e.target.value)}
-                />
-                <button onClick={trocarFotoDePerfil}>Enviar</button>
-                <button onClick={() => setModalFotoPerfil(!modalFotoPerfil)}>
-                  X
-                </button>
+                <div>
+                  <h3>Envie o caminho da foto :</h3>
+                  <input
+                    type="text"
+                    placeholder="Envie o caminho da foto"
+                    onChange={(e) => setInputFotoPerfil(e.target.value)}
+                  />
+                  <button onClick={trocarFotoDePerfil}>Enviar</button>
+                  <button
+                    id="botaox"
+                    onClick={() => setModalFotoPerfil(!modalFotoPerfil)}
+                  >
+                    X
+                  </button>
+                </div>
               </ModalFotoPerfil>
             </ContainerModal>
           ) : (
             <></>
           )}
-        </div>
+        </DivNomeUsuario>
 
         <DivUsuarioBotao>
           <h2>Usuário: {usuario?.name}</h2>
@@ -183,7 +337,10 @@ export const DashboardProfissionalSaude = () => {
                     onChange={(e) => setInputNome(e.target.value)}
                   />
                   <button onClick={trocarNome}>Enviar</button>
-                  <button onClick={() => setModalNomePerfil(!modalNomePerfil)}>
+                  <button
+                    id="botaox"
+                    onClick={() => setModalNomePerfil(!modalNomePerfil)}
+                  >
                     X
                   </button>
                 </div>
@@ -211,7 +368,7 @@ export const DashboardProfissionalSaude = () => {
               <ContainerModal>
                 <ModalFotoPerfil>
                   <div>
-                    <h2>Alterar localidade</h2>
+                    <h2>Alterar Cidade</h2>
                     <input
                       type="text"
                       placeholder="Alterar Localidade"
@@ -219,6 +376,7 @@ export const DashboardProfissionalSaude = () => {
                     />
                     <button onClick={trocarLocalidade}>Enviar</button>
                     <button
+                      id="botaox"
                       onClick={() => setModalLocalidade(!modalLocalidade)}
                     >
                       X
@@ -253,7 +411,10 @@ export const DashboardProfissionalSaude = () => {
                       onChange={(e) => setInputContato(e.target.value)}
                     />
                     <button onClick={trocarContato}>Enviar</button>
-                    <button onClick={() => setModalContato(!modalContato)}>
+                    <button
+                      id="botaox"
+                      onClick={() => setModalContato(!modalContato)}
+                    >
                       X
                     </button>
                   </div>
@@ -265,6 +426,14 @@ export const DashboardProfissionalSaude = () => {
             <p>Registro Profissional: {usuario?.registroProfissional}</p>
           </SectionContato>
         </DivSections>
+        <div>
+          <h2>Disponível para doar Horas de vida?</h2>
+          <Switch
+            checked={checked}
+            onChange={handleChange}
+            inputProps={{ "aria-label": "controlled" }}
+          />
+        </div>
       </Container>
       <Footer />
     </>

@@ -5,6 +5,8 @@ import GlobalStyle from "./styles/global";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { ContextProvider } from "./contexts/contextLogin";
+import Home from "./pages/Home";
+import App from "./App";
 import RoutesMain from "./routes";
 
 const root = ReactDOM.createRoot(
@@ -15,6 +17,7 @@ root.render(
     <ContextProvider>
       <BrowserRouter>
         <GlobalStyle />
+        <App />
         <RoutesMain />
       </BrowserRouter>
     </ContextProvider>
