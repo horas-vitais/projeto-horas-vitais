@@ -19,6 +19,7 @@ export const HeaderContainer = styled.header`
     a {
       font-size: 1.2rem;
       color: #777;
+      text-decoration: none;
       margin-left: 2rem;
       :hover {
         background-color: #16a085;
@@ -37,6 +38,7 @@ export const HeaderContainer = styled.header`
       display: flex;
       align-items: center;
       background-color: #fff;
+      border: none;
       color: #16a085;
       cursor: pointer;
       font-size: 1.3rem;
@@ -67,6 +69,7 @@ export const HeaderContainer = styled.header`
           text-align: start;
           padding: 0.5rem;
           display: flex;
+          text-decoration: none;
           justify-content: space-between;
           color: #777;
           margin-left: 0rem;
@@ -101,6 +104,7 @@ export const HeaderContainer = styled.header`
           font-size: 1rem;
           align-items: center;
           width: 100%;
+          text-decoration: none;
           text-align: start;
           padding: 0.5rem;
           display: flex;
@@ -111,7 +115,7 @@ export const HeaderContainer = styled.header`
           display: initial;
           :hover {
             background-color: #16a085;
-            color: white;
+            color: #fff;
           }
         }
       }
