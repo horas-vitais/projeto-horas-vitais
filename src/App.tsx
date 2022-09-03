@@ -1,3 +1,4 @@
+import Routes from "./routes";
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -11,7 +12,9 @@ import { ProfissionalProvider } from "./Providers/contextProfissional";
 function App() {
   return (
     <div className="App">
+      <ToastContainer />
       <ProfissionalProvider>
+        <Routes />
         <ListaDeProfissionais />
       </ProfissionalProvider>
     </div>
