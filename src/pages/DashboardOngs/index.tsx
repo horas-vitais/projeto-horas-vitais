@@ -70,8 +70,22 @@ function ListaDeProfissionais() {
         </ul>
       </Doctors>
       <DivClientReview>
-        <h2>Client</h2>
-        <h2 id="colorVerde">Review</h2>
+        <h2>
+          Review dos <span id="colorVerde"> Clientes</span>
+        </h2>
+
+        <ul>
+          <li>
+            <img src="" alt=""></img>
+            <h3>Dr. Cuca Beludo</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Laboriosam sapiente nihil aperiam? Repellat sequi nisi aliquid
+              perspiciatis libero nobis rem numquam nesciunt alias sapiente
+              minus voluptatem, reiciendis consequuntur optio dolorem!
+            </p>
+          </li>
+        </ul>
       </DivClientReview>
       <Footer />
     </>
