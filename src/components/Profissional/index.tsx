@@ -58,7 +58,7 @@ function Profissional({ profissional }: ProfissionalProps) {
       <div className="informacoesDoProfissional">
         <h3 className="nomeDoProfissional">{profissional.name}</h3>
         <span>{profissional.areaAtuacao}</span>
-        <h4 className="escritaDoHorario">Horário disponível</h4>
+        <h4 className="escritaDoHorario">Disponiblidade</h4>
         <p className="horarioDisponivel">{profissional.disposicao}</p>
       </div>
       <button>SELECIONAR</button>

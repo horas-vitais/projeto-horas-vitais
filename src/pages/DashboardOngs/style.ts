@@ -17,13 +17,21 @@ export const Doctors = styled.section`
     background: #fff;
     border-radius: 10px;
     border: 2px solid #16a085;
-    box-shadow: 0.5rem 0.5rem 0 rgba(22, 160, 133, 0.2);
+    box-shadow: 0.8rem 0.5rem 0 rgba(22, 160, 133, 0.2);
     padding: 2rem;
+    .informacoesDoProfissional {
+      display: flex;
+      flex-direction: column;
+    }
 
+    h3 {
+      font-size: 2.5rem;
+      color: #444;
+    }
     img {
-      width: 180px;
-      height: 180px;
-      border: 1.5px solid #16a085;
+      width: 200px;
+      height: 200px;
+      border: 3px solid #16a085;
       border-radius: 8px;
     }
   }
@@ -38,28 +46,31 @@ export const Doctors = styled.section`
     height: 40px;
     width: 200px;
     font-size: 18px;
-    font-weight: 500;
-    background-color: #16a085;
-    color: #fff;
+    font-weight: 600;
+    background-color: #fff;
+    color: #16a085;
     border-radius: 8px;
-    border: 2px solid rgba(0, 0, 0, 0.2);
+    border: 2px solid #16a085;
     cursor: pointer;
   }
 
   button:hover {
-    color: red;
-    background-color: rgba(240, 0, 0, 0.1);
-    border: 2px solid red;
+    color: white;
+    background-color: #16a085;
+    border: 2px solid #777;
+    box-shadow: 0.5rem 0.5rem 0 rgba(22, 160, 133, 0.2);
   }
 
   h4 {
     font-size: 15px;
     font-weight: 650;
+    padding: 0.5rem;
   }
   span {
     color: #16a085;
     font-size: 18px;
     font-weight: 800;
+    padding: 0.5rem;
   }
 
   p {
