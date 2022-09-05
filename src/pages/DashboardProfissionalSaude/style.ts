@@ -157,6 +157,10 @@ export const ModalFotoPerfil = styled.div`
   #botaox:hover {
     background-color: #028b30;
   }
+
+  @media (max-width: 720px) {
+    width: 99%;
+  }
 `;
 
 export const ContainerModal = styled.div`
