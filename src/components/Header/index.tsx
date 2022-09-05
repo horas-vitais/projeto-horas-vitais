@@ -1,12 +1,43 @@
 import Logo from "../Logo";
 import { HeaderContainer } from "./styles";
 import { AiOutlineMenu } from "react-icons/ai";
+import { FaUser } from "react-icons/fa";
 import "react-dropdown/style.css";
 import { useState } from "react";
 
 const Header = () => {
   const [openModal, setIsOpenModal] = useState(false);
-  return (
+  const user = localStorage.getItem("@HorasDeVida:Token");
+  return user ? (
+    <HeaderContainer>
+      <a href="#">
+        <Logo />
+      </a>
+      <button className="btn-login" onClick={() => setIsOpenModal(!openModal)}>
+        <FaUser />
+      </button>
+      {openModal ? (
+        <div className="dropdown-login">
+          <section>
+            <a href="#">Home</a>
+            <a href="#">Contato</a>
+            <a href="#">Sobre</a>
+            <button
+              className="logout"
+              onClick={() => {
+                localStorage.clear();
+                document.location.reload();
+              }}
+            >
+              Sair
+            </button>
+          </section>
+        </div>
+      ) : (
+        <></>
+      )}
+    </HeaderContainer>
+  ) : (
     <HeaderContainer>
       <a href="#">
         <Logo />
