@@ -16,15 +16,15 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ContextProvider>
       <BrowserRouter>
+    <ContextProvider>
         <GlobalStyle />
         <ToastContainer />
         <ProfissionalProvider>
-          <RoutesMain />
+          <App></App>
         </ProfissionalProvider>
-      </BrowserRouter>
     </ContextProvider>
+      </BrowserRouter>
   </React.StrictMode>
 );
 reportWebVitals();
