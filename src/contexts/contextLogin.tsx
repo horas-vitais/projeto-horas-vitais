@@ -25,7 +25,7 @@ export const ContextProvider = ({ children }: ProviderChildren) => {
   const navigate = useNavigate();
 
   const functionVoltar = () => {
-    navigate("/home", { replace: true });
+    navigate("/", { replace: true });
   };
 
   const onSubmitFunction = (data: FieldValues) => {
