@@ -58,45 +58,6 @@ export const DashboardProfissionalSaude = () => {
     api.get(`/users/${id}`).then((response) => setUsuario(response.data));
   }, []);
 
-  useEffect(() => {
-    const token = localStorage.getItem("@HorasDeVida:Token");
-
-    api
-      .patch(
-        `/users/${usuario?.id}`,
-        {
-          disponivel: `${checked}`,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => {
-        toast.success("Disponibilidade alterada com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      })
-      .catch((res) => {
-        toast.error("Ops , algo deu errado!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
-  }, [checked]);
-
   function trocarFotoDePerfil() {
     const token = localStorage.getItem("@HorasDeVida:Token");
 
@@ -263,6 +224,43 @@ export const DashboardProfissionalSaude = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
+
+    const token = localStorage.getItem("@HorasDeVida:Token");
+
+    api
+      .patch(
+        `/users/${usuario?.id}`,
+        {
+          disponivel: `${checked}`,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        toast.success("Disponibilidade alterada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((res) => {
+        toast.error("Ops , algo deu errado!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   };
   console.log(checked);
   return (
