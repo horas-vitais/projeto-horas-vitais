@@ -3,6 +3,7 @@ import ListaDeProfissionais from "../pages/DashboardOngs";
 import { DashboardProfissionalSaude } from "../pages/DashboardProfissionalSaude";
 import Home from "../pages/Home";
 import { Login } from "../pages/Login";
+import Page404 from "../pages/Page404";
 import Register from "../pages/Register";
 
 const RoutesMain = () => {
@@ -14,6 +15,7 @@ const RoutesMain = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/perfil" element={<DashboardProfissionalSaude />} />
       <Route path="/dashboard" element={<ListaDeProfissionais />} />
+      <Route path="*" element={<Page404 />} />
     </Routes>
   );
 };
