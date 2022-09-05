@@ -14,6 +14,7 @@ export const Formulario = styled.div`
             text-shadow: 3px 3px 5px gray;
             font-size: 40px;
             margin-top: 40px;
+            margin: 40px auto;
         }
         form{
             display: flex;
@@ -67,6 +68,7 @@ export const Formulario = styled.div`
             text-shadow: 3px 3px 5px gray;
             font-size: 40px;
             margin-top: 40px;
+            margin-left: 335px;
         }
         form{
             display: flex;

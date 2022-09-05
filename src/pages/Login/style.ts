@@ -21,10 +21,12 @@ export const Background = styled.div`
           svg{
                width: 300px;
                height: 300px;
+               margin-left: 150px;
           }
           p{
                color: gray;
                font-size: 16px;
+               margin-top: 3px;
           }
           p:hover{
                text-decoration: underline;
@@ -33,7 +35,7 @@ export const Background = styled.div`
           .voltar{
                width: 25px;
                height: 25px;
-               margin-top: 14px;
+               margin: 0px;
           }
           .botao-voltar{
                display: flex
@@ -48,7 +50,7 @@ export const Background = styled.div`
                color: gray;
                font-size: 16px;
                position: absolute;
-               top: 42px;
+               top: 61px;
                left: 80px;
           }
           p:hover{
@@ -65,15 +67,19 @@ export const Background = styled.div`
                left: 100px;
                top: 100px;
           }
+          .title{
+               display: flex;
+               margin-left: 620px;
+               margin-top: 50px;
+          }
           .title1{
                color: #16A085;
-               position: absolute;
-               left: 535px;
+               
           }
           .title2{
                color: black;
-               position: absolute;
-               left: 785px;
+               margin-left: 10px;
+               
           }
      }
 `
