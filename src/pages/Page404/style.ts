@@ -7,7 +7,7 @@ export const ContainerError = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100vw;
-  height: 80vh;
+  height: 90vh;
   img {
     height: 500px;
   }
@@ -29,6 +29,27 @@ export const ContainerError = styled.div`
     :hover {
       background: #16a085;
       color: #fff;
+    }
+  }
+  @media (max-width: 800px) {
+    img {
+      width: 100%;
+    }
+  }
+  @media (max-width: 600px) {
+    button {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      padding-left: 0.6rem;
+      padding-right: 0.6rem;
+      border: 0.1rem solid #16a085;
+      border-radius: 0.5rem;
+      height: 46px;
+      color: #16a085;
+      cursor: pointer;
+      font-size: 1rem;
+      background: #fff;
     }
   }
 `;
