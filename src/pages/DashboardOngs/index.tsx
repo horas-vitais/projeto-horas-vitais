@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import "./style";
 import { ProfissionalContext } from "../../Providers/contextProfissional";
@@ -6,6 +6,8 @@ import { DivClientReview, Doctors } from "./style";
 import Profissional from "../../components/Profissional";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import { Link } from "react-router-dom";
+import { api } from "../../services/api";
 
 interface IProfissional {
   name?: string;
@@ -26,7 +28,13 @@ interface IProfissional {
   disposicao: string;
 }
 
+interface Review {
+  review: string;
+}
+
 function ListaDeProfissionais() {
+  const [comentario, setComentario] = useState([]);
+
   const {
     listaDeProfissionais,
     setListaDeProfissionais,
@@ -35,12 +43,17 @@ function ListaDeProfissionais() {
   } = useContext(ProfissionalContext);
 
   useEffect(() => {
-    axios
-      .get("https://horasvitais.herokuapp.com/users?isOng=false")
+    api
+      .get("/users?isOng=false")
       .then((res) => {
         setListaDeProfissionais(res.data);
       })
       .catch((err) => console.log(err));
+
+    api
+      .get("/db")
+      .then((res) => setComentario(res.data.reviews))
+      .catch((err) => console.error(err));
   }, []);
 
   return (
@@ -52,7 +65,7 @@ function ListaDeProfissionais() {
           {filtroDeProfissionais.length > 0
             ? filtroDeProfissionais.map((profissional: IProfissional) => (
                 <li key={profissional.id}>
-                  <h1>{profissional.name}</h1>
+                  <Link to="/visualizarPerfil">{profissional.name}</Link>
                   <Profissional
                     key={profissional.id}
                     profissional={profissional}
@@ -73,20 +86,19 @@ function ListaDeProfissionais() {
         <h2>
           Review dos <span id="colorVerde"> Clientes</span>
         </h2>
-
         <ul>
-          <li>
-            <img src="" alt=""></img>
-            <h3>Dr. Cuca Beludo</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Laboriosam sapiente nihil aperiam? Repellat sequi nisi aliquid
-              perspiciatis libero nobis rem numquam nesciunt alias sapiente
-              minus voluptatem, reiciendis consequuntur optio dolorem!
-            </p>
-          </li>
+          {comentario.length > 0 ? (
+            comentario.map((coment: Review) => (
+              <li>
+                <p>{coment?.review}</p>
+              </li>
+            ))
+          ) : (
+            <p>teste</p>
+          )}
         </ul>
       </DivClientReview>
+
       <Footer />
     </>
   );
