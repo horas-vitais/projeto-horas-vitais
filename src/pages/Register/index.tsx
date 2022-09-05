@@ -13,7 +13,7 @@ const Register = () => {
   const [isOng, setIsOng] = useState(false);
   useEffect(() => {
     ong ? setIsOng(true) : setIsOng(false);
-  }, []);
+  }, [ong]);
 
   function comeBackBtn() {
     if (isOng) {
