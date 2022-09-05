@@ -24,10 +24,20 @@ export const Doctors = styled.section`
       flex-direction: column;
     }
 
+    a:hover {
+      text-decoration: underline 2.3px;
+      text-decoration-color: red;
+    }
+
     h3 {
       font-size: 2.5rem;
       color: #444;
     }
+
+    h3:hover {
+      color: red;
+    }
+
     img {
       width: 200px;
       height: 200px;

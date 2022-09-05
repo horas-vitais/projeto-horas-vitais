@@ -6,7 +6,7 @@ import { DivClientReview, Doctors } from "./style";
 import Profissional from "../../components/Profissional";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-
+import { Link } from "react-router-dom";
 interface IProfissional {
   name?: string;
   CPF: string;
@@ -52,7 +52,7 @@ function ListaDeProfissionais() {
           {filtroDeProfissionais.length > 0
             ? filtroDeProfissionais.map((profissional: IProfissional) => (
                 <li key={profissional.id}>
-                  <h1>{profissional.name}</h1>
+                  <Link to="/visualizarPerfil">{profissional.name}</Link>
                   <Profissional
                     key={profissional.id}
                     profissional={profissional}
