@@ -39,7 +39,7 @@ export const BotaoAlterarFoto = styled.button`
   @media (max-width: 1500px) {
     padding: 2px;
     position: absolute;
-    left: 30%;
+    left: 40%;
     bottom: 87%;
   }
 `;
@@ -61,7 +61,7 @@ export const DivUsuarioBotao = styled.div`
 `;
 
 export const ImagemPerfil = styled.img`
-  width: 10%;
+  max-width: 10%;
 
   border: solid 7px var(--green);
   border-radius: 40%;
@@ -72,7 +72,7 @@ export const ImagemPerfil = styled.img`
 
   @media (max-width: 1500px) {
     top: 5%;
-    width: 15%;
+    max-width: 6rem;
   }
 `;
 
@@ -99,14 +99,13 @@ export const SectionContato = styled.section`
   flex-direction: column;
   justify-content: center;
 
-  margin-top: 3rem;
-  margin-bottom: 2rem;
   position: absolute;
   left: 45%;
+  bottom: 10%;
   @media (max-width: 720px) {
     left: 0;
     margin-left: 10%;
-    bottom: 20%;
+    bottom: 10%;
   }
 `;
 
@@ -176,6 +175,7 @@ export const ContainerModal = styled.div`
 `;
 
 export const BotaoAlterar = styled.button`
+  width: 200px;
   border: 1px solid #50f6c1;
   border-radius: 5px;
   background-color: transparent;
@@ -194,4 +194,15 @@ export const AreaAtuacao = styled.span`
 
 export const DivNomeUsuario = styled.div`
   margin-top: 2rem;
+`;
+
+export const DivHorasDeVida = styled.div`
+  h2 {
+    font-size: 1rem;
+  }
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
