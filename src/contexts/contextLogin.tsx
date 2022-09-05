@@ -4,8 +4,6 @@ import { FieldValues } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-
-
 interface ProviderChildren {
   children: ReactNode;
 }
@@ -17,18 +15,18 @@ interface IUser {
 interface ContextProviderData {
   onSubmitFunction: (data: FieldValues) => void;
   user: IUser;
-  functionVoltar: () => void
+  functionVoltar: () => void;
 }
 
 export const Context = createContext({} as ContextProviderData);
 
 export const ContextProvider = ({ children }: ProviderChildren) => {
   const [user, setUser] = useState({} as IUser);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const functionVoltar = () => {
-    navigate('/home', {replace:true})
-  }
+    navigate("/home", { replace: true });
+  };
 
   const onSubmitFunction = (data: FieldValues) => {
     axios
@@ -45,14 +43,12 @@ export const ContextProvider = ({ children }: ProviderChildren) => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-        })
-        if(res.data.user.isOng){
-          navigate("/dashboard", {replace: true})
+        });
+        if (res.data.user.isOng) {
+          navigate("/dashboard", { replace: true });
+        } else {
+          navigate("/perfil", { replace: true });
         }
-        else{
-          navigate("/perfil", {replace: true})
-        }
-        
       })
       .catch((err) =>
         toast.error("Ops! Algo deu errado.", {

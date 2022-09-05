@@ -15,6 +15,15 @@ export const HeaderContainer = styled.header`
   button {
     display: none;
   }
+  .btn-login {
+    display: inline-block;
+    align-items: center;
+    background-color: #fff;
+    border: none;
+    color: #16a085;
+    cursor: pointer;
+    font-size: 1.3rem;
+  }
   nav {
     a {
       font-size: 1.2rem;
@@ -30,6 +39,62 @@ export const HeaderContainer = styled.header`
   }
   .dropdown {
     display: none;
+  }
+  .dropdown-login {
+    display: initial;
+    position: absolute;
+    top: 98px;
+    right: 0px;
+    width: 220px;
+    background-color: #fff;
+    border: #16a085 1px solid;
+    display: initial;
+    border-radius: 5px;
+    padding: 1rem;
+    section {
+      height: 130px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      a {
+        font-size: 1rem;
+        align-items: center;
+        width: 100%;
+        text-align: start;
+        padding: 0.5rem;
+        display: flex;
+        text-decoration: none;
+        justify-content: space-between;
+        color: #777;
+        margin-left: 0rem;
+        border-radius: 5px;
+        display: initial;
+        :hover {
+          background-color: #16a085;
+          color: white;
+        }
+      }
+    }
+    .logout {
+      font-size: 1rem;
+      align-items: center;
+      width: 100%;
+      text-align: start;
+      padding: 0.5rem;
+      display: flex;
+      text-decoration: none;
+      justify-content: space-between;
+      background-color: #fff;
+      color: #777;
+      margin-left: 0rem;
+      border-radius: 5px;
+      display: initial;
+      cursor: pointer;
+      :hover {
+        background-color: #16a085;
+        color: white;
+      }
+    }
   }
   @media (max-width: 991px) {
     padding: 1rem;
