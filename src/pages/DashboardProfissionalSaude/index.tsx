@@ -5,6 +5,7 @@ import {
   BotaoAlterarFoto,
   Container,
   ContainerModal,
+  DivHorasDeVida,
   DivNomeUsuario,
   DivSections,
   DivUsuarioBotao,
@@ -53,10 +54,12 @@ export const DashboardProfissionalSaude = () => {
   const [modalContato, setModalContato] = useState(false);
   const [inputContato, setInputContato] = useState("");
 
+  const [reaload, setReload] = useState(false);
+
   useEffect(() => {
     const id = localStorage.getItem("@HorasDeVida:Id");
     api.get(`/users/${id}`).then((response) => setUsuario(response.data));
-  }, []);
+  }, [reaload]);
 
   function trocarFotoDePerfil() {
     const token = localStorage.getItem("@HorasDeVida:Token");
@@ -84,6 +87,7 @@ export const DashboardProfissionalSaude = () => {
           progress: undefined,
         });
         setModalFotoPerfil(!ModalFotoPerfil);
+        setReload(!reaload);
       })
       .catch((res) => {
         toast.error("Ops , algo deu errado!", {
@@ -124,7 +128,8 @@ export const DashboardProfissionalSaude = () => {
           draggable: true,
           progress: undefined,
         });
-        setModalFotoPerfil(!ModalFotoPerfil);
+        setModalNomePerfil(!modalNomePerfil);
+        setReload(!reaload);
       })
       .catch((res) => {
         toast.error("Ops , algo deu errado!", {
@@ -136,7 +141,7 @@ export const DashboardProfissionalSaude = () => {
           draggable: true,
           progress: undefined,
         });
-        setModalFotoPerfil(!ModalFotoPerfil);
+        setModalNomePerfil(!modalNomePerfil);
       });
   }
 
@@ -165,7 +170,8 @@ export const DashboardProfissionalSaude = () => {
           draggable: true,
           progress: undefined,
         });
-        setModalFotoPerfil(!ModalFotoPerfil);
+        setModalLocalidade(!modalLocalidade);
+        setReload(!reaload);
       })
       .catch((res) => {
         toast.error("Ops , algo deu errado!", {
@@ -177,7 +183,7 @@ export const DashboardProfissionalSaude = () => {
           draggable: true,
           progress: undefined,
         });
-        setModalFotoPerfil(!ModalFotoPerfil);
+        setModalLocalidade(!modalLocalidade);
       });
   }
 
@@ -206,7 +212,8 @@ export const DashboardProfissionalSaude = () => {
           draggable: true,
           progress: undefined,
         });
-        setModalFotoPerfil(!ModalFotoPerfil);
+        setModalContato(!modalContato);
+        setReload(!reaload);
       })
       .catch((res) => {
         toast.error("Ops , algo deu errado!", {
@@ -218,7 +225,7 @@ export const DashboardProfissionalSaude = () => {
           draggable: true,
           progress: undefined,
         });
-        setModalFotoPerfil(!ModalFotoPerfil);
+        setModalContato(!modalContato);
       });
   }
 
@@ -422,16 +429,16 @@ export const DashboardProfissionalSaude = () => {
               <></>
             )}
             <p>Registro Profissional: {usuario?.registroProfissional}</p>
+            <DivHorasDeVida>
+              <h2>Disponível para doar Horas de vida?</h2>
+              <Switch
+                checked={checked}
+                onChange={handleChange}
+                inputProps={{ "aria-label": "controlled" }}
+              />
+            </DivHorasDeVida>
           </SectionContato>
         </DivSections>
-        <div>
-          <h2>Disponível para doar Horas de vida?</h2>
-          <Switch
-            checked={checked}
-            onChange={handleChange}
-            inputProps={{ "aria-label": "controlled" }}
-          />
-        </div>
       </Container>
       <Footer />
     </>
