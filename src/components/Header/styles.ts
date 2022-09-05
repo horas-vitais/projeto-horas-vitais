@@ -23,6 +23,7 @@ export const HeaderContainer = styled.header`
       margin-left: 2rem;
       :hover {
         background-color: #16a085;
+        border-radius: 5px;
         color: white;
       }
     }
