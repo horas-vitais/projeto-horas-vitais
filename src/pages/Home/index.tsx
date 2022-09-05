@@ -4,8 +4,10 @@ import Relogio from "../../components/Relogio";
 import imgOngs from "../../assets/home.svg";
 import { HomeContainer } from "./styles";
 import { MdOutlineNavigateNext } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <HomeContainer>
       <Header />
@@ -18,7 +20,7 @@ const Home = () => {
 
           <div className="content">
             <h2>Doe suas horas livres e as tranforme em vida para alguém.</h2>
-            <button>
+            <button onClick={() => navigate("/register", { replace: true })}>
               DOAR
               <span>
                 <MdOutlineNavigateNext />

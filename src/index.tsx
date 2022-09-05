@@ -7,6 +7,9 @@ import reportWebVitals from "./reportWebVitals";
 import { ContextProvider } from "./contexts/contextLogin";
 import Home from "./pages/Home";
 import App from "./App";
+import RoutesMain from "./routes";
+import { ProfissionalProvider } from "./Providers/contextProfissional";
+import { ToastContainer } from "react-toastify";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,10 +17,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ContextProvider>
-      <Home></Home>
       <BrowserRouter>
         <GlobalStyle />
-        <App />
+        <ToastContainer />
+        <ProfissionalProvider>
+          <RoutesMain />
+        </ProfissionalProvider>
       </BrowserRouter>
     </ContextProvider>
   </React.StrictMode>
