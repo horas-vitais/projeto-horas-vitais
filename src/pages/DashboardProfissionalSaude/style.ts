@@ -39,7 +39,7 @@ export const BotaoAlterarFoto = styled.button`
   @media (max-width: 1500px) {
     padding: 2px;
     position: absolute;
-    left: 40%;
+    left: 42%;
     bottom: 87%;
   }
 `;
