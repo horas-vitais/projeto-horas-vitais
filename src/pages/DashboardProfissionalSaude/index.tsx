@@ -359,13 +359,13 @@ export const DashboardProfissionalSaude = () => {
         <DivSections>
           <Section>
             <span>Área de atuação: {usuario?.areaAtuacao}</span>
-            <p>
-              {usuario?.localidade ? (
-                <p>Localização: {usuario.localidade}</p>
-              ) : (
-                <p>Localização: Cidade...</p>
-              )}
-            </p>
+
+            {usuario?.localidade ? (
+              <p>Localização: {usuario.localidade}</p>
+            ) : (
+              <p>Localização: Cidade...</p>
+            )}
+
             <BotaoAlterar onClick={() => setModalLocalidade(!modalLocalidade)}>
               Alterar Cidade
             </BotaoAlterar>

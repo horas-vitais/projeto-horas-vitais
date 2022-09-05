@@ -5,8 +5,6 @@ import GlobalStyle from "./styles/global";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { ContextProvider } from "./contexts/contextLogin";
-import Home from "./pages/Home";
-import App from "./App";
 import RoutesMain from "./routes";
 import { ProfissionalProvider } from "./Providers/contextProfissional";
 import { ToastContainer } from "react-toastify";
