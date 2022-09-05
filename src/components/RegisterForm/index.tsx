@@ -1,7 +1,7 @@
 import { Button } from "../Button/styles";
 import Input from "../Input";
 import { FormContainer } from "./styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -30,6 +30,8 @@ interface IRegisterFormProps {
 
 
 const RegisterForm = ({isOng, setIsOng}: IRegisterFormProps) => {
+    const navigate = useNavigate()
+
     const userSchema = yup.object().shape({
         nome: yup.string().required("Nome obrigatório"),
         CPF: yup.string().required("CPF obrigatório").min(11,"CPF inválido"),
@@ -72,6 +74,8 @@ const RegisterForm = ({isOng, setIsOng}: IRegisterFormProps) => {
             draggable: true,
             progress: undefined, 
         })
+
+        navigate("/login")
     }
 
     return (
