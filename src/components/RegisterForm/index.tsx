@@ -37,7 +37,7 @@ const RegisterForm = ({isOng, setIsOng}: IRegisterFormProps) => {
         CPF: yup.string().required("CPF obrigatório").min(11,"CPF inválido"),
         registroProfissional: yup.string().required("Registro profissional obrigatório"),
         email: yup.string().required("Email obrigatório"),
-        password: yup.string().required("Senha obrigatória"),
+        password: yup.string().required("Senha obrigatória").matches(/[A-Z]/, "deve conter ao menos 1 letra maiúscula").matches(/([a-z])/, "deve conter ao menos 1 letra minúscula").matches(/(\d)/, "deve conter ao menos 1 número").matches(/.{8,}/, "deve conter ao menos 8 dígitos"),
         confirmPassword: yup.string().required("Confirmação de senha obrigatória").oneOf([yup.ref("password")], "As senhas devem ser iguais"),
         areaDeAtuacao: yup.string().required("Área de atuação obrigatória")
     })
@@ -45,7 +45,7 @@ const RegisterForm = ({isOng, setIsOng}: IRegisterFormProps) => {
     const ongSchema = yup.object().shape({
         nome: yup.string().required("Nome obrigatório"),
         email: yup.string().required("Email obrigatório"),
-        password: yup.string().required("Senha obrigatória"),
+        password: yup.string().required("Senha obrigatória").matches(/[A-Z]/, "deve conter ao menos 1 letra maiúscula").matches(/([a-z])/, "deve conter ao menos 1 letra minúscula").matches(/(\d)/, "deve conter ao menos 1 número").matches(/.{8,}/, "deve conter ao menos 8 dígitos"),
         confirmPassword: yup.string().required("Confirmação de senha obrigatória").oneOf([yup.ref("password")], "As senhas devem ser iguais"),
         endereco: yup.string().required("Endereço obrigatório"),
         bairro: yup.string().required("Bairro obrigatório"),
