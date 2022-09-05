@@ -6,16 +6,14 @@ import { DashboardProfissionalSaude } from "./pages/DashboardProfissionalSaude";
 import { Login } from "./pages/Login";
 import { ProfissionalProvider } from "./Providers/contextProfissional";
 
+import React from "react";
+import RoutesMain from "./routes";
+
+
 function App() {
   return (
     <div className="App">
-      <ToastContainer />
-      <ProfissionalProvider>
-        <DashboardProfissionalSaude />
-        <Login />
-        <Routes />
-        <ListaDeProfissionais />
-      </ProfissionalProvider>
+      <RoutesMain></RoutesMain>
     </div>
   );
 }
