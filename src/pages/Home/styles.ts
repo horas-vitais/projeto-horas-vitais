@@ -163,4 +163,46 @@ export const HomeContainer = styled.div`
       width: 100%;
     }
   }
+  @media (max-width: 370px) {
+    .Container {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    .home {
+      width: 100%;
+      h3 {
+        width: 100%;
+        font-size: 2rem;
+      }
+      .content h2 {
+        font-size: 1.5rem;
+      }
+    }
+    .content {
+      text-align: center;
+      width: 100%;
+    }
+    .content button {
+      font-size: 1rem;
+      margin-top: 1rem;
+      width: 80vw;
+      padding: 0.2rem;
+      padding-left: 1rem;
+    }
+    .about {
+      h1 {
+        font-size: 2.3rem;
+      }
+    }
+  }
+  @media (max-width: 300px) {
+    .content button {
+      font-size: 1rem;
+      margin-top: 1rem;
+      width: 100vw;
+      padding: 0.2rem;
+      padding-left: 1rem;
+    }
+  }
 `;
