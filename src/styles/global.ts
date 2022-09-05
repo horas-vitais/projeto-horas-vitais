@@ -30,6 +30,5 @@ const GlobalStyle = createGlobalStyle`
     transition: all .2s ease-out;
     text-decoration: none;
   }
-`
-export default GlobalStyle
-
+`;
+export default GlobalStyle;
