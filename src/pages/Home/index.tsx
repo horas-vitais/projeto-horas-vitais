@@ -51,7 +51,9 @@ const Home = () => {
                 profissional e pronto, ele reeberá seu chamado para atender no
                 horário requerido.
               </p>
-              <button>
+              <button
+                onClick={() => navigate("/register/:ong", { replace: true })}
+              >
                 Registrar ONG
                 <span>
                   <MdOutlineNavigateNext />
