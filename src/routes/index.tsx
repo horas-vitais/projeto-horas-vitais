@@ -8,8 +8,9 @@ import Register from "../pages/Register";
 const RoutesMain = () => {
   return (
     <Routes>
+      <Route path="/register/:ong" element={<Register />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/perfil" element={<DashboardProfissionalSaude />} />
       <Route path="/dashboard" element={<ListaDeProfissionais />} />
