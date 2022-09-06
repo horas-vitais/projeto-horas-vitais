@@ -5,12 +5,15 @@ import {
   BotaoAlterarFoto,
   Container,
   ContainerModal,
+  DivHorasDeVida,
   DivNomeUsuario,
   DivSections,
   DivUsuarioBotao,
   ImagemFundo,
   ImagemPerfil,
+  ModalDescription,
   ModalFotoPerfil,
+  Review,
   Section,
   SectionContato,
 } from "./style";
@@ -34,12 +37,16 @@ interface PerfilUsuario {
   localidade?: string;
   contato?: string;
   disponivel: boolean;
+  description: string;
 }
 
 export const DashboardProfissionalSaude = () => {
   const [checked, setChecked] = React.useState(true);
 
   const [usuario, setUsuario] = useState<PerfilUsuario>();
+
+  const [modalDescription, setModalDescription] = useState(false);
+  const [inputDescription, setInputDescription] = useState("");
 
   const [modalFotoPerfil, setModalFotoPerfil] = useState(false);
   const [inputFotoPerfil, setInputFotoPerfil] = useState("");
@@ -53,49 +60,12 @@ export const DashboardProfissionalSaude = () => {
   const [modalContato, setModalContato] = useState(false);
   const [inputContato, setInputContato] = useState("");
 
+  const [reaload, setReload] = useState(false);
+
   useEffect(() => {
     const id = localStorage.getItem("@HorasDeVida:Id");
     api.get(`/users/${id}`).then((response) => setUsuario(response.data));
-  }, []);
-
-  useEffect(() => {
-    const token = localStorage.getItem("@HorasDeVida:Token");
-
-    api
-      .patch(
-        `/users/${usuario?.id}`,
-        {
-          disponivel: `${checked}`,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => {
-        toast.success("Disponibilidade alterada com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      })
-      .catch((res) => {
-        toast.error("Ops , algo deu errado!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
-  }, [checked]);
+  }, [reaload]);
 
   function trocarFotoDePerfil() {
     const token = localStorage.getItem("@HorasDeVida:Token");
@@ -123,6 +93,7 @@ export const DashboardProfissionalSaude = () => {
           progress: undefined,
         });
         setModalFotoPerfil(!ModalFotoPerfil);
+        setReload(!reaload);
       })
       .catch((res) => {
         toast.error("Ops , algo deu errado!", {
@@ -163,7 +134,8 @@ export const DashboardProfissionalSaude = () => {
           draggable: true,
           progress: undefined,
         });
-        setModalFotoPerfil(!ModalFotoPerfil);
+        setModalNomePerfil(!modalNomePerfil);
+        setReload(!reaload);
       })
       .catch((res) => {
         toast.error("Ops , algo deu errado!", {
@@ -175,7 +147,7 @@ export const DashboardProfissionalSaude = () => {
           draggable: true,
           progress: undefined,
         });
-        setModalFotoPerfil(!ModalFotoPerfil);
+        setModalNomePerfil(!modalNomePerfil);
       });
   }
 
@@ -204,7 +176,8 @@ export const DashboardProfissionalSaude = () => {
           draggable: true,
           progress: undefined,
         });
-        setModalFotoPerfil(!ModalFotoPerfil);
+        setModalLocalidade(!modalLocalidade);
+        setReload(!reaload);
       })
       .catch((res) => {
         toast.error("Ops , algo deu errado!", {
@@ -216,7 +189,49 @@ export const DashboardProfissionalSaude = () => {
           draggable: true,
           progress: undefined,
         });
-        setModalFotoPerfil(!ModalFotoPerfil);
+        setModalLocalidade(!modalLocalidade);
+      });
+  }
+
+  function trocarDescricao() {
+    const token = localStorage.getItem("@HorasDeVida:Token");
+
+    api
+      .patch(
+        `/users/${usuario?.id}`,
+        {
+          description: `${inputDescription}`,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        toast.success("Descrição alterada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setModalDescription(!modalDescription);
+        setReload(!reaload);
+      })
+      .catch((err) => {
+        toast.error("Ops , algo deu errado!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        console.log(err);
       });
   }
 
@@ -245,7 +260,8 @@ export const DashboardProfissionalSaude = () => {
           draggable: true,
           progress: undefined,
         });
-        setModalFotoPerfil(!ModalFotoPerfil);
+        setModalContato(!modalContato);
+        setReload(!reaload);
       })
       .catch((res) => {
         toast.error("Ops , algo deu errado!", {
@@ -257,14 +273,51 @@ export const DashboardProfissionalSaude = () => {
           draggable: true,
           progress: undefined,
         });
-        setModalFotoPerfil(!ModalFotoPerfil);
+        setModalContato(!modalContato);
       });
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
+
+    const token = localStorage.getItem("@HorasDeVida:Token");
+
+    api
+      .patch(
+        `/users/${usuario?.id}`,
+        {
+          disponivel: `${checked}`,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        toast.success("Disponibilidade alterada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((res) => {
+        toast.error("Ops , algo deu errado!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   };
-  console.log(checked);
+
   return (
     <>
       <Header />
@@ -354,13 +407,13 @@ export const DashboardProfissionalSaude = () => {
         <DivSections>
           <Section>
             <span>Área de atuação: {usuario?.areaAtuacao}</span>
-            <p>
-              {usuario?.localidade ? (
-                <p>Localização: {usuario.localidade}</p>
-              ) : (
-                <p>Localização: Cidade...</p>
-              )}
-            </p>
+
+            {usuario?.localidade ? (
+              <p>Localização: {usuario.localidade}</p>
+            ) : (
+              <p>Localização: Cidade...</p>
+            )}
+
             <BotaoAlterar onClick={() => setModalLocalidade(!modalLocalidade)}>
               Alterar Cidade
             </BotaoAlterar>
@@ -424,16 +477,45 @@ export const DashboardProfissionalSaude = () => {
               <></>
             )}
             <p>Registro Profissional: {usuario?.registroProfissional}</p>
+            <DivHorasDeVida>
+              <h2>Disponível para doar Horas de vida?</h2>
+              <Switch
+                checked={checked}
+                onChange={handleChange}
+                inputProps={{ "aria-label": "controlled" }}
+              />
+            </DivHorasDeVida>
           </SectionContato>
+          <Review>
+            <h1>Descrição do Profissional:</h1>
+            <div>
+              <p>{usuario?.description}</p>
+            </div>
+            <button onClick={() => setModalDescription(!modalDescription)}>
+              Adicionar Descrição
+            </button>
+          </Review>
+          {modalDescription && (
+            <ContainerModal>
+              <ModalDescription>
+                <div>
+                  <h2>Alterar Descrição</h2>
+                  <textarea
+                    placeholder="Alterar contato"
+                    onChange={(e) => setInputDescription(e.target.value)}
+                  />
+                  <button onClick={trocarDescricao}>Enviar</button>
+                  <button
+                    id="botaox"
+                    onClick={() => setModalDescription(!modalDescription)}
+                  >
+                    X
+                  </button>
+                </div>
+              </ModalDescription>
+            </ContainerModal>
+          )}
         </DivSections>
-        <div>
-          <h2>Disponível para doar Horas de vida?</h2>
-          <Switch
-            checked={checked}
-            onChange={handleChange}
-            inputProps={{ "aria-label": "controlled" }}
-          />
-        </div>
       </Container>
       <Footer />
     </>

@@ -3,6 +3,8 @@ import axios from "axios";
 import { FieldValues } from "react-hook-form";
 import { toast } from "react-toastify";
 import { api } from "../services/api";
+import { useNavigate } from "react-router-dom";
+
 
 interface ProviderChildren {
   children: ReactNode;
@@ -26,6 +28,7 @@ interface ContextProviderData {
   onSubmitFunction: (data: FieldValues) => void;
   user: IUser | null;
   loading: boolean;
+  functionVoltar: () => void;
 }
 
 export const Context = createContext({} as ContextProviderData);
@@ -33,6 +36,7 @@ export const Context = createContext({} as ContextProviderData);
 export const ContextProvider = ({ children }: ProviderChildren) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [loading, setLoading] = useState(true)
+  const navigate = useNavigate();
 
   useEffect(() => {
     const request = async () => {
@@ -60,6 +64,11 @@ export const ContextProvider = ({ children }: ProviderChildren) => {
     request()
   },[])
 
+
+  const functionVoltar = () => {
+    navigate("/", { replace: true });
+  };
+
   const onSubmitFunction = (data: FieldValues) => {
     axios
       .post("https://horasvitais.herokuapp.com/login", data)
@@ -67,6 +76,20 @@ export const ContextProvider = ({ children }: ProviderChildren) => {
         setUser(res.data.user);
         localStorage.setItem("@HorasDeVida:Token", res.data.accessToken);
         localStorage.setItem("@HorasDeVida:Id", res.data.user.id);
+        toast.success("Logado com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        if (res.data.user.isOng) {
+          navigate("/dashboard", { replace: true });
+        } else {
+          navigate("/perfil", { replace: true });
+        }
       })
       .catch((err) =>
         toast.error("Ops! Algo deu errado.", {
@@ -81,7 +104,7 @@ export const ContextProvider = ({ children }: ProviderChildren) => {
       );
   };
   return (
-    <Context.Provider value={{ onSubmitFunction, user, loading }}>
+    <Context.Provider value={{ onSubmitFunction, user, functionVoltar, loading }}>
       {children}
     </Context.Provider>
   );

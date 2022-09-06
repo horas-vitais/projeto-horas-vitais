@@ -1,24 +1,25 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 85%;
-  height: 600px;
+  width: 85vw;
+  height: 80vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  position: relative;
 
   border: solid 1px #16a085;
-  border-radius: 20px;
+  border-radius: 20px 20px 0px 0px;
   margin-top: 10rem;
   position: relative;
 
   p {
-    margin-top: 25px;
+    margin-top: 5%;
   }
 
   @media (max-width: 720px) {
-    width: 95%;
-    height: 600px;
+    width: 95vw;
+    height: 80vh;
   }
 `;
 
@@ -39,7 +40,7 @@ export const BotaoAlterarFoto = styled.button`
   @media (max-width: 1500px) {
     padding: 2px;
     position: absolute;
-    left: 30%;
+    left: 42%;
     bottom: 87%;
   }
 `;
@@ -61,18 +62,18 @@ export const DivUsuarioBotao = styled.div`
 `;
 
 export const ImagemPerfil = styled.img`
-  width: 10%;
-
-  border: solid 7px var(--green);
-  border-radius: 40%;
-
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  border: solid 5px var(--green);
+  border-radius: 100%;
   position: absolute;
-  bottom: 290px;
+  top: 20%;
   left: 10%;
 
   @media (max-width: 1500px) {
     top: 5%;
-    width: 15%;
+    max-width: 6rem;
   }
 `;
 
@@ -99,14 +100,13 @@ export const SectionContato = styled.section`
   flex-direction: column;
   justify-content: center;
 
-  margin-top: 3rem;
-  margin-bottom: 2rem;
   position: absolute;
   left: 45%;
+  bottom: 10%;
   @media (max-width: 720px) {
     left: 0;
     margin-left: 10%;
-    bottom: 20%;
+    bottom: 10%;
   }
 `;
 
@@ -158,6 +158,10 @@ export const ModalFotoPerfil = styled.div`
   #botaox:hover {
     background-color: #028b30;
   }
+
+  @media (max-width: 720px) {
+    width: 99%;
+  }
 `;
 
 export const ContainerModal = styled.div`
@@ -176,6 +180,7 @@ export const ContainerModal = styled.div`
 `;
 
 export const BotaoAlterar = styled.button`
+  width: 200px;
   border: 1px solid #50f6c1;
   border-radius: 5px;
   background-color: transparent;
@@ -194,4 +199,101 @@ export const AreaAtuacao = styled.span`
 
 export const DivNomeUsuario = styled.div`
   margin-top: 2rem;
+`;
+
+export const DivHorasDeVida = styled.div`
+  h2 {
+    font-size: 1rem;
+  }
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Review = styled.div`
+  position: absolute;
+  right: 50px;
+  bottom: 20px;
+  h1{
+    color:#16a085;
+    font-size: 16px;
+  }
+  div{
+    width: 300px;
+    height: 250px;
+    border: 1px solid black;
+  }
+  button{
+    border: 1px solid #50f6c1;
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 10px;
+    margin-left: 80px;
+    margin-top: 20px;
+  }
+  button:hover {
+    background-color: #50f6c1;
+  }
+  p{
+    margin-left: 12px;
+    width: 280px;
+    height: 250px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+`
+
+export const ModalDescription = styled.div`
+  width: 400px;
+  height: 350px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #baf4cc;
+
+  position: absolute;
+
+  border: solid 1px white;
+  border-radius: 20px;
+
+  padding: 2rem;
+
+  textarea{
+    resize:none;
+    height: 200px;
+    width: 300px;
+    padding: 10px;
+  }
+
+  button {
+    padding: 10px;
+  }
+
+  button:hover {
+    background-color: var(--green);
+  }
+
+  #botaox {
+    position: absolute;
+    top: 2px;
+    right: 9px;
+    border: none;
+    background-color: transparent;
+    padding: 5px;
+    border-radius: 40%;
+  }
+  #botaox:hover {
+    background-color: #028b30;
+  }
+
+  @media (max-width: 720px) {
+    width: 99%;
+  }
 `;

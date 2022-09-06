@@ -3,11 +3,12 @@ import styled from "styled-components";
 export const Doctors = styled.section`
   margin-top: 8rem;
   ul {
-    width: 100%;
+    width: 95%;
     display: flex;
     gap: 1rem;
     overflow: auto;
-    padding: 2rem;
+    padding: 7rem;
+    display: flex;
   }
   li {
     list-style: none;
@@ -24,10 +25,20 @@ export const Doctors = styled.section`
       flex-direction: column;
     }
 
+    a:hover {
+      text-decoration: underline 2.3px;
+      text-decoration-color: red;
+    }
+
     h3 {
-      font-size: 2.5rem;
+      font-size: 1rem;
       color: #444;
     }
+
+    h3:hover {
+      color: red;
+    }
+
     img {
       width: 200px;
       height: 200px;
@@ -40,6 +51,7 @@ export const Doctors = styled.section`
     font-size: 50px;
     color: #16a085;
     margin-left: 5%;
+    text-align: center;
   }
 
   button {
@@ -98,14 +110,18 @@ export const DivClientReview = styled.div`
   }
 
   ul {
-    width: 100vw;
+    width: 90vw;
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
     overflow: auto;
     padding: 2rem;
   }
   li {
-    width: 300px;
+    margin: 2rem;
+    min-width: 280px;
+    max-width: 310px;
     height: 480px;
     border: 2px solid #16a085;
     box-shadow: 0.5rem 0.5rem 0 rgba(22, 160, 133, 0.2);
@@ -123,19 +139,17 @@ export const DivClientReview = styled.div`
       padding: 0.5rem;
     }
 
-    img {
-      height: 80px;
-      width: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 0.4rem solid #fff;
-    }
-
     p {
+      width: 90%;
+      margin-top: 5rem;
       color: #777;
       line-height: 1.5;
       font-size: 0.9rem;
       padding-top: 5rem;
+      text-align: justify;
+      @media (max-width: 700px) {
+        margin-top: 0.5rem;
+      }
     }
 
     ::before {
@@ -150,6 +164,23 @@ export const DivClientReview = styled.div`
       height: 300px;
       width: 120%;
       z-index: -1;
+    }
+  }
+  @media (max-width: 700px) {
+    h2 {
+      font-size: 1.5rem;
+    }
+    #colorVerde {
+      font-size: 1.5rem;
+    }
+
+    ul {
+      width: 90%;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    li {
+      width: 90%;
     }
   }
 `;

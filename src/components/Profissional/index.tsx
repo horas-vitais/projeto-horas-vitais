@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { DropDownMenu } from "../DropDownMenu";
+import { Link } from "react-router-dom";
+import { Div } from "./style";
 
 interface IProfissional {
   name?: string;
@@ -20,32 +20,15 @@ interface IProfissional {
   registroProfissional: string;
   description?: string;
   disposicao: string;
+  disponivel?: string;
 }
 
 interface ProfissionalProps {
   profissional: IProfissional;
+  description: string | undefined;
 }
-
-function Profissional({ profissional }: ProfissionalProps) {
-  const token = localStorage.getItem("token");
-
-  function sucessoAoDeletar() {
-    toast.success("Seleção feita com sucesso!");
-  }
-
-  const base_URL = "https://horasvitais.herokuapp.com";
-
-  const deleteProfissional = (id: string) => {
-    axios
-      .delete(`${base_URL}/users?isOng=false/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => sucessoAoDeletar())
-      .catch((err) => console.log(err));
-  };
-
+function Profissional({ profissional, description }: ProfissionalProps) {
+  console.log(profissional.disponivel);
   return (
     <>
       <div className="profissionalImgContainer">
@@ -56,10 +39,19 @@ function Profissional({ profissional }: ProfissionalProps) {
         />
       </div>
       <div className="informacoesDoProfissional">
-        <h3 className="nomeDoProfissional">{profissional.name}</h3>
+        <Link to={`/visualizarPerfil/${profissional.id}`}>
+          <h3 className="nomeDoProfissional">{profissional.name}</h3>
+        </Link>
         <span>{profissional.areaAtuacao}</span>
-        <h4 className="escritaDoHorario">Disponiblidade</h4>
-        <p className="horarioDisponivel">{profissional.disposicao}</p>
+        <Div>
+          {profissional.disponivel === "true" ? (
+            <h4 className="disponivel">Disponível</h4>
+          ) : (
+            <h4 className="indisponivel">Indisponível</h4>
+          )}
+
+          <DropDownMenu description={description}></DropDownMenu>
+        </Div>
       </div>
       <button>SELECIONAR</button>
     </>
