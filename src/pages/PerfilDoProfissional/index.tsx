@@ -87,73 +87,92 @@ export const PerfilDoProfissional = () => {
     <>
       <Header />
       <Container>
-        <div className="imagemDeFundo">
-          <img className="imagemFundo" src={fundo} alt="fundo" />
-        </div>
+        <img className="imagemFundo" src={fundo} alt="fundo" />
 
-        <section className="secaoDeInformacoes">
-          <div className="imagemDePerfil">
-            {usuario?.img ? (
-              <>
-                <img src={usuario?.img} alt="Foto perfil" />
-              </>
-            ) : (
-              <>
-                <img src={fotoPerfil} alt="Foto perfil" />
-              </>
-            )}
-          </div>
+        <div className="informacoesDoPerfil">
+          <div className="ladoEsquerdo">
+            <div className="imagemDePerfil">
+              {usuario?.img ? (
+                <>
+                  <img src={usuario?.img} alt="Foto perfil" />
+                </>
+              ) : (
+                <>
+                  <img src={fotoPerfil} alt="Foto perfil" />
+                </>
+              )}
+            </div>
 
-          <div className="nomeDeusuario">
-            <h2>Usuário: {usuario?.name}</h2>
-          </div>
-          <div className="areaDeAtuacao">
-            <span>Área de atuação: {usuario?.areaAtuacao}</span>
-          </div>
+            <h2>Dr. {usuario?.name}</h2>
 
-          <div className="localidade">
+            <p>FORMAÇÃO</p>
+            <span>{usuario?.areaAtuacao}</span>
+          </div>
+          <div className="meio">
             {usuario?.localidade ? (
-              <h3>Localização: {usuario.localidade}</h3>
+              <div>
+                <h3>LOCALIZAÇÃO</h3>
+                <p>{usuario.localidade}</p>
+              </div>
             ) : (
-              <p>Localização: Cidade...</p>
+              <div>
+                <h3>LOCALIZAÇÃO</h3>
+                <p>LOCALIZAÇÃO Cidade...</p>
+              </div>
             )}
-
             <span>
               {usuario?.contato ? (
-                <span>Contato: {usuario.contato}</span>
+                <div>
+                  <h2>CONTATO</h2>
+                  <span>{usuario.contato}</span>
+                </div>
               ) : (
-                <span>Contato: (xx)xxxxx-xxxx</span>
+                <div>
+                  <h2>CONTATO</h2>
+                  <span>(xx)xxxxx-xxxx</span>
+                </div>
               )}
             </span>
+            <h4 className="registro">
+              REGISTRO PROFISSIONAL<p>{usuario?.registroProfissional}</p>
+            </h4>
           </div>
 
-          <div className="registro">
-            <p>Registro Profissional: {usuario?.registroProfissional}</p>
-          </div>
+          <div className="ladoDireito">
+            <button
+              className="review"
+              onClick={() => setModalReview(!modalReview)}
+            >
+              {" "}
+              DAR REVIEW{" "}
+            </button>
+            {modalReview ? (
+              <Review>
+                <div className="modal">
+                  <div className="faixa">
+                    <h2>Review do profissional</h2>
+                    <button
+                      className="botaox"
+                      onClick={() => setModalReview(!modalReview)}
+                    >
+                      Sair
+                    </button>
+                  </div>
 
-          <h2>Opinar sobre o profissional</h2>
-          <button onClick={() => setModalReview(!modalReview)}> + </button>
-          {modalReview ? (
-            <Review>
-              <div>
-                <input
-                  type="text"
-                  placeholder="Dê sua opinião sobre esse profissional"
-                  onChange={(e) => setInputReview(e.target.value)}
-                />
-                <button onClick={postarReview}>Salvar</button>
-                <button
-                  id="botaox"
-                  onClick={() => setModalReview(!modalReview)}
-                >
-                  X
-                </button>
-              </div>
-            </Review>
-          ) : (
-            <></>
-          )}
-        </section>
+                  <textarea
+                    placeholder="DESCREVA SUA EXPERIÊNCIA COM ESSE PROFISSIONAL"
+                    onChange={(e) => setInputReview(e.target.value)}
+                  />
+                  <button className="salvar" onClick={postarReview}>
+                    Enviar review
+                  </button>
+                </div>
+              </Review>
+            ) : (
+              <></>
+            )}
+          </div>
+        </div>
       </Container>
       <Footer />
     </>
