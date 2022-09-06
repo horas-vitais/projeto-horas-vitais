@@ -20,6 +20,16 @@ const Home = () => {
 
           <div className="content">
             <h2>Doe suas horas livres e as tranforme em vida para alguém.</h2>
+            <p>
+              Registre-se como instituição e procure o profissional que precisa
+              mais próximo possível.
+            </p>
+            <p>
+              Entre aqui, cadastre a instituição e faça uma seleção de
+              profissionais da saúde que necessita. É só entrar, escolher o
+              profissional e pronto, ele reeberá seu chamado para atender no
+              horário requerido.
+            </p>
             <button onClick={() => navigate("/register", { replace: true })}>
               DOAR
               <span>

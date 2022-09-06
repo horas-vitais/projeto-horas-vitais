@@ -22,7 +22,7 @@ export const HomeContainer = styled.div`
     align-items: center;
   }
   .about .caixa .image img {
-    height: 343px;
+    height: 325px;
   }
 
   .about .caixa .content h3 {
@@ -33,6 +33,7 @@ export const HomeContainer = styled.div`
   }
 
   .about .caixa .content p {
+    width: 700px;
     color: #777;
     padding: 1rem 0;
     font-size: 1rem;
@@ -113,11 +114,12 @@ export const HomeContainer = styled.div`
   .home .content h2 {
     font-size: 2rem;
     color: #444;
-    line-height: 1.8;
+    margin-top: 18px;
     text-shadow: 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.2);
   }
 
   .home .content p {
+    width: 700px;
     font-size: 1rem;
     color: #777;
     line-height: 1.8;
@@ -141,7 +143,7 @@ export const HomeContainer = styled.div`
     }
     .content button {
       font-size: 1rem;
-      margin-top: 1rem;
+      margin-top: 2rem;
       padding: 0.2rem;
       padding-left: 1rem;
     }

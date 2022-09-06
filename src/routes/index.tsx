@@ -17,7 +17,7 @@ const RoutesMain = () => {
       <Route path="/perfil" element={<DashboardProfissionalSaude />} />
       <Route path="/dashboard" element={<ListaDeProfissionais />} />
       <Route path="*" element={<Page404 />} />
-      <Route path="/visualizarPerfil" element={<PerfilDoProfissional />} />
+      <Route path="/visualizarPerfil/:id" element={<PerfilDoProfissional />} />
     </Routes>
   );
 };

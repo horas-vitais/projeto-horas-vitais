@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { toast } from "react-toastify";
 import * as React from "react";
+import { useParams } from "react-router-dom";
 
 interface PerfilUsuario {
   CPF: number;
@@ -32,28 +33,28 @@ export const PerfilDoProfissional = () => {
 
   const [reaload, setReload] = useState(false);
 
+  const { id } = useParams();
   useEffect(() => {
-    const id = localStorage.getItem("@HorasDeVida:Id");
     api.get(`/users/${id}`).then((response) => setUsuario(response.data));
   }, [reaload]);
 
   function postarReview() {
     const token = localStorage.getItem("@HorasDeVida:Token");
-
+    const idOng = localStorage.getItem("@HorasDeVida:id");
     api
       .post(
         `/reviews`,
         {
           review: `${inputReview}`,
-          receiverId: 1,
-          userId: usuario?.id,
+          receiverId: `${id}`,
+          userId: `${idOng}`,
         },
 
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        },
+        }
       )
       .then((res) => {
         toast.success("Review postado!", {
