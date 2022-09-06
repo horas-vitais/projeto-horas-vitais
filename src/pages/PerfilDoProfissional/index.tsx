@@ -7,7 +7,9 @@ import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { toast } from "react-toastify";
 import * as React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import backArrow from "../../assets/backArrow.svg";
+import { Button } from "./style";
 
 interface PerfilUsuario {
   CPF: number;
@@ -26,6 +28,7 @@ interface PerfilUsuario {
 }
 
 export const PerfilDoProfissional = () => {
+  const navigate = useNavigate();
   const [usuario, setUsuario] = useState<PerfilUsuario>();
 
   const [modalReview, setModalReview] = useState(false);
@@ -86,6 +89,12 @@ export const PerfilDoProfissional = () => {
   return (
     <>
       <Header />
+
+      <Button onClick={() => navigate("/dashboard", { replace: true })}>
+        <img src={backArrow} alt="Voltar" />
+        Voltar
+      </Button>
+
       <Container>
         <img className="imagemFundo" src={fundo} alt="fundo" />
 

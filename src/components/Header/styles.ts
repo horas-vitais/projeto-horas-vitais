@@ -96,9 +96,7 @@ export const HeaderContainer = styled.header`
       }
     }
   }
-  @media (max-width: 991px) {
-    padding: 1rem;
-  }
+
   @media (max-width: 768px) {
     button {
       display: flex;

@@ -4,10 +4,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
-
-  h1 {
-    color: red;
-  }
 `;
 
 export const Li = styled.li`
@@ -20,14 +16,19 @@ export const Li = styled.li`
   text-align: center;
 `;
 export const Ul = styled.ul`
-  height: 90vh;
+  height: 84vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
 `;
 export const Imagem = styled.img`
+  object-fit: cover;
   width: 60%;
   height: 20%;
 
   border-radius: 50%;
+`;
+
+export const H1 = styled.h1`
+  margin-bottom: 50px;
 `;

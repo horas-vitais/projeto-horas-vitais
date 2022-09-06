@@ -4,7 +4,7 @@ import FotoKaleb from "../../assets/kalebe.png";
 import FotoWilson from "../../assets/wilson.png";
 import FotoJoao from "../../assets/joao.png";
 import FotoArthur from "../../assets/arthur.png";
-import { Imagem, Li, Ul } from "./style";
+import { H1, Imagem, Li, Ul } from "./style";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
@@ -35,9 +35,9 @@ export const Contatos = () => {
             <a href="https://github.com/wilsonmesquita03">GitHub</a>
           </Li>
         </Ul>
-        <h1>
+        <H1>
           Horas <span>Vitais</span>
-        </h1>
+        </H1>
       </Container>
 
       <Footer />

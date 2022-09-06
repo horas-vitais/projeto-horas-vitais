@@ -21,7 +21,7 @@ const Header = () => {
         <div className="dropdown-login">
           <section>
             <Link to="/">Home</Link>
-            <Link to="/contato">Contato</Link>
+            <Link to="/contatos">Contato</Link>
             <Link to="/sobre">Sobre</Link>
             <button
               className="logout"
