@@ -54,14 +54,14 @@ export const ContextProvider = ({ children }: ProviderChildren) => {
         .then(async () => {
 
           const { data } = await api.get<IUser>(`users/${userId}`)
-          
+
           setUser(data)
           setLoading(false)
 
           if(data.isOng){
             navigate("/dashboard", { replace: true })
           }else {
-            navigate("/profile", { replace: true })
+            navigate("/perfil", { replace: true })
           }
         })
         .catch(() => {
