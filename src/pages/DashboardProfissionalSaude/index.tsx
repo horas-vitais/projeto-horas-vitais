@@ -45,7 +45,7 @@ export const DashboardProfissionalSaude = () => {
 
   const [usuario, setUsuario] = useState<PerfilUsuario>();
 
-  const [modalDescription, setModalDescription] = useState(false)
+  const [modalDescription, setModalDescription] = useState(false);
   const [inputDescription, setInputDescription] = useState("");
 
   const [modalFotoPerfil, setModalFotoPerfil] = useState(false);
@@ -194,44 +194,45 @@ export const DashboardProfissionalSaude = () => {
   }
 
   function trocarDescricao() {
-    const token = localStorage.getItem("@HorasDeVida:Token")
+    const token = localStorage.getItem("@HorasDeVida:Token");
 
-    api.patch(
-      `/users/${usuario?.id}`,
-      {
-        description: `${inputDescription}`
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`
+    api
+      .patch(
+        `/users/${usuario?.id}`,
+        {
+          description: `${inputDescription}`,
         },
-      }
-    )
-    .then((res) => {
-      toast.success("Descrição alterada com sucesso!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        toast.success("Descrição alterada com sucesso!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setModalDescription(!modalDescription);
+        setReload(!reaload);
+      })
+      .catch((err) => {
+        toast.error("Ops , algo deu errado!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        console.log(err);
       });
-      setModalDescription(!modalDescription);
-      setReload(!reaload);
-    })
-    .catch((err) => {
-      toast.error("Ops , algo deu errado!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-      console.log(err)
-    })
   }
 
   function trocarContato() {
@@ -316,7 +317,7 @@ export const DashboardProfissionalSaude = () => {
         });
       });
   };
-  console.log(checked);
+
   return (
     <>
       <Header />
@@ -490,29 +491,30 @@ export const DashboardProfissionalSaude = () => {
             <div>
               <p>{usuario?.description}</p>
             </div>
-            <button onClick={() =>setModalDescription(!modalDescription)}>Adicionar Descrição</button>
-            
+            <button onClick={() => setModalDescription(!modalDescription)}>
+              Adicionar Descrição
+            </button>
           </Review>
-          {modalDescription &&
-              <ContainerModal>
-                <ModalDescription>
-                  <div>
-                    <h2>Alterar Descrição</h2>
-                    <textarea
-                      placeholder="Alterar contato"
-                      onChange={(e) => setInputDescription(e.target.value)}
-                    />
-                    <button onClick={trocarDescricao}>Enviar</button>
-                    <button
-                      id="botaox"
-                      onClick={() => setModalDescription(!modalDescription)}
-                    >
-                      X
-                    </button>
-                  </div>
-                </ModalDescription>
-              </ContainerModal>
-            }
+          {modalDescription && (
+            <ContainerModal>
+              <ModalDescription>
+                <div>
+                  <h2>Alterar Descrição</h2>
+                  <textarea
+                    placeholder="Alterar contato"
+                    onChange={(e) => setInputDescription(e.target.value)}
+                  />
+                  <button onClick={trocarDescricao}>Enviar</button>
+                  <button
+                    id="botaox"
+                    onClick={() => setModalDescription(!modalDescription)}
+                  >
+                    X
+                  </button>
+                </div>
+              </ModalDescription>
+            </ContainerModal>
+          )}
         </DivSections>
       </Container>
       <Footer />

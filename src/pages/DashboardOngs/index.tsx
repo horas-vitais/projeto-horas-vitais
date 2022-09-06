@@ -31,6 +31,7 @@ interface IProfissional {
   registroProfissional: string;
   description?: string;
   disposicao: string;
+  disponivel?: string;
 }
 
 interface Review {
@@ -68,25 +69,19 @@ function ListaDeProfissionais() {
       <Doctors>
         <h2>Doadores</h2>
         <ul>
-          {listaDeProfissionais.length > 0
-            ? listaDeProfissionais.map((profissional: IProfissional) => (
-                <li key={profissional.id}>
-                  <Profissional
-                    key={profissional.id}
-                    profissional={profissional}
-                    description={profissional.description}
-                  />
-                </li>
-              ))
-            : listaDeProfissionais.map((profissional: IProfissional) => (
-                <li key={profissional.id}>
-                  <Profissional
-                    key={profissional.id}
-                    profissional={profissional}
-                    description={profissional.description}
-                  />
-                </li>
-              ))}
+          {listaDeProfissionais.length > 0 ? (
+            listaDeProfissionais.map((profissional: IProfissional) => (
+              <li key={profissional.id}>
+                <Profissional
+                  key={profissional.id}
+                  profissional={profissional}
+                  description={profissional.description}
+                />
+              </li>
+            ))
+          ) : (
+            <p>Carregando...</p>
+          )}
         </ul>
       </Doctors>
       <DivClientReview>
@@ -104,7 +99,7 @@ function ListaDeProfissionais() {
               </li>
             ))
           ) : (
-            <p>teste</p>
+            <p>Parece que ainda não há comentários por aqui...</p>
           )}
         </ul>
       </DivClientReview>
