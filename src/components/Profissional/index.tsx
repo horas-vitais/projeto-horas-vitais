@@ -1,10 +1,7 @@
-import axios from "axios";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import { DropDownMenu } from "../DropDownMenu";
-
 import { Link } from "react-router-dom";
+import { Div } from "./style";
 
 interface IProfissional {
   name?: string;
@@ -23,33 +20,15 @@ interface IProfissional {
   registroProfissional: string;
   description?: string;
   disposicao: string;
+  disponivel?: string;
 }
 
 interface ProfissionalProps {
   profissional: IProfissional;
   description: string | undefined;
 }
-
 function Profissional({ profissional, description }: ProfissionalProps) {
-  const token = localStorage.getItem("token");
-
-  function sucessoAoDeletar() {
-    toast.success("Seleção feita com sucesso!");
-  }
-
-  const base_URL = "https://horasvitais.herokuapp.com";
-
-  const deleteProfissional = (id: string) => {
-    axios
-      .delete(`${base_URL}/users?isOng=false/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => sucessoAoDeletar())
-      .catch((err) => console.log(err));
-  };
-
+  console.log(profissional.disponivel);
   return (
     <>
       <div className="profissionalImgContainer">
@@ -64,11 +43,15 @@ function Profissional({ profissional, description }: ProfissionalProps) {
           <h3 className="nomeDoProfissional">{profissional.name}</h3>
         </Link>
         <span>{profissional.areaAtuacao}</span>
-        <div>
-          <h4 className="escritaDoHorario">Disponiblidade</h4>
+        <Div>
+          {profissional.disponivel === "true" ? (
+            <h4 className="disponivel">Disponível</h4>
+          ) : (
+            <h4 className="indisponivel">Indisponível</h4>
+          )}
+
           <DropDownMenu description={description}></DropDownMenu>
-        </div>
-        <p className="horarioDisponivel">{profissional.disposicao}</p>
+        </Div>
       </div>
       <button>SELECIONAR</button>
     </>
