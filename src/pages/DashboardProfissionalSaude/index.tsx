@@ -11,7 +11,9 @@ import {
   DivUsuarioBotao,
   ImagemFundo,
   ImagemPerfil,
+  ModalDescription,
   ModalFotoPerfil,
+  Review,
   Section,
   SectionContato,
 } from "./style";
@@ -35,12 +37,16 @@ interface PerfilUsuario {
   localidade?: string;
   contato?: string;
   disponivel: boolean;
+  description: string;
 }
 
 export const DashboardProfissionalSaude = () => {
   const [checked, setChecked] = React.useState(true);
 
   const [usuario, setUsuario] = useState<PerfilUsuario>();
+
+  const [modalDescription, setModalDescription] = useState(false)
+  const [inputDescription, setInputDescription] = useState("");
 
   const [modalFotoPerfil, setModalFotoPerfil] = useState(false);
   const [inputFotoPerfil, setInputFotoPerfil] = useState("");
@@ -185,6 +191,47 @@ export const DashboardProfissionalSaude = () => {
         });
         setModalLocalidade(!modalLocalidade);
       });
+  }
+
+  function trocarDescricao() {
+    const token = localStorage.getItem("@HorasDeVida:Token")
+
+    api.patch(
+      `/users/${usuario?.id}`,
+      {
+        description: `${inputDescription}`
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+      }
+    )
+    .then((res) => {
+      toast.success("Descrição alterada com sucesso!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setModalDescription(!modalDescription);
+      setReload(!reaload);
+    })
+    .catch((err) => {
+      toast.error("Ops , algo deu errado!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      console.log(err)
+    })
   }
 
   function trocarContato() {
@@ -438,6 +485,34 @@ export const DashboardProfissionalSaude = () => {
               />
             </DivHorasDeVida>
           </SectionContato>
+          <Review>
+            <h1>Descrição do Profissional:</h1>
+            <div>
+              <p>{usuario?.description}</p>
+            </div>
+            <button onClick={() =>setModalDescription(!modalDescription)}>Adicionar Descrição</button>
+            
+          </Review>
+          {modalDescription &&
+              <ContainerModal>
+                <ModalDescription>
+                  <div>
+                    <h2>Alterar Descrição</h2>
+                    <textarea
+                      placeholder="Alterar contato"
+                      onChange={(e) => setInputDescription(e.target.value)}
+                    />
+                    <button onClick={trocarDescricao}>Enviar</button>
+                    <button
+                      id="botaox"
+                      onClick={() => setModalDescription(!modalDescription)}
+                    >
+                      X
+                    </button>
+                  </div>
+                </ModalDescription>
+              </ContainerModal>
+            }
         </DivSections>
       </Container>
       <Footer />
