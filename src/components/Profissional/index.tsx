@@ -1,7 +1,11 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import { DropDownMenu } from "../DropDownMenu";
+
+import { Link } from "react-router-dom";
+
 
 interface IProfissional {
   name?: string;
@@ -57,7 +61,9 @@ function Profissional({ profissional, description} : ProfissionalProps) {
         />
       </div>
       <div className="informacoesDoProfissional">
-        <h3 className="nomeDoProfissional">{profissional.name}</h3>
+        <Link to="/visualizarPerfil">
+          <h3 className="nomeDoProfissional">{profissional.name}</h3>
+        </Link>
         <span>{profissional.areaAtuacao}</span>
         <div>
           <h4 className="escritaDoHorario">Disponiblidade</h4>

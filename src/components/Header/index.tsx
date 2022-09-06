@@ -1,20 +1,52 @@
 import Logo from "../Logo";
 import { HeaderContainer } from "./styles";
 import { AiOutlineMenu } from "react-icons/ai";
+import { FaUser } from "react-icons/fa";
 import "react-dropdown/style.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [openModal, setIsOpenModal] = useState(false);
-  return (
+  const user = localStorage.getItem("@HorasDeVida:Token");
+  return user ? (
     <HeaderContainer>
-      <a href="#">
+      <Link to="/">
         <Logo />
-      </a>
+      </Link>
+      <button className="btn-login" onClick={() => setIsOpenModal(!openModal)}>
+        <FaUser />
+      </button>
+      {openModal ? (
+        <div className="dropdown-login">
+          <section>
+            <Link to="/">Home</Link>
+            <Link to="/contato">Contato</Link>
+            <Link to="/sobre">Sobre</Link>
+            <button
+              className="logout"
+              onClick={() => {
+                localStorage.clear();
+                document.location.reload();
+              }}
+            >
+              Sair
+            </button>
+          </section>
+        </div>
+      ) : (
+        <></>
+      )}
+    </HeaderContainer>
+  ) : (
+    <HeaderContainer>
+      <Link to="/">
+        <Logo />
+      </Link>
       <nav>
-        <a href="#">Home</a>
-        <a href="#">Contato</a>
-        <a href="#">Sobre</a>
+        <Link to="/login">Login</Link>
+        <Link to="/contato">Contato</Link>
+        <Link to="/sobre">Sobre</Link>
       </nav>
       <button onClick={() => setIsOpenModal(!openModal)}>
         <AiOutlineMenu />
@@ -22,9 +54,9 @@ const Header = () => {
       {openModal ? (
         <div className="dropdown">
           <section>
-            <a href="#">Home</a>
-            <a href="#">Contato</a>
-            <a href="#">Sobre</a>
+            <Link to="/login">Login</Link>
+            <Link to="/contato">Contato</Link>
+            <Link to="/sobre">Sobre</Link>
           </section>
         </div>
       ) : (
