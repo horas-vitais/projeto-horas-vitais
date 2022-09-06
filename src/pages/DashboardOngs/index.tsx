@@ -56,6 +56,7 @@ function ListaDeProfissionais() {
                   <Profissional
                     key={profissional.id}
                     profissional={profissional}
+                    description={profissional.description}
                   />
                 </li>
               ))
@@ -64,6 +65,7 @@ function ListaDeProfissionais() {
                   <Profissional
                     key={profissional.id}
                     profissional={profissional}
+                    description={profissional.description}
                   />
                 </li>
               ))}

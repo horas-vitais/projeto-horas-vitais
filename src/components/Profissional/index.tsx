@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { DropDownMenu } from "../DropDownMenu";
 
 interface IProfissional {
   name?: string;
@@ -24,9 +24,10 @@ interface IProfissional {
 
 interface ProfissionalProps {
   profissional: IProfissional;
+  description: string | undefined,
 }
 
-function Profissional({ profissional }: ProfissionalProps) {
+function Profissional({ profissional, description} : ProfissionalProps) {
   const token = localStorage.getItem("token");
 
   function sucessoAoDeletar() {
@@ -58,7 +59,10 @@ function Profissional({ profissional }: ProfissionalProps) {
       <div className="informacoesDoProfissional">
         <h3 className="nomeDoProfissional">{profissional.name}</h3>
         <span>{profissional.areaAtuacao}</span>
-        <h4 className="escritaDoHorario">Disponiblidade</h4>
+        <div>
+          <h4 className="escritaDoHorario">Disponiblidade</h4>
+          <DropDownMenu description={description}></DropDownMenu>
+        </div>
         <p className="horarioDisponivel">{profissional.disposicao}</p>
       </div>
       <button>SELECIONAR</button>
