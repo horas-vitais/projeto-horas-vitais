@@ -135,9 +135,9 @@ export const Container = styled.div`
     border: 0.2rem solid green;
   }
 
-  @media (max-width: 800px) {
-    flex-direction: column;
-    align-items: center;
+  @media (max-width: 720px) {
+    width: 95vw;
+    height: 80vh;
   }
 `;
 

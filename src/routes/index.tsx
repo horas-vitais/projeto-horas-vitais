@@ -5,7 +5,7 @@ import { DashboardProfissionalSaude } from "../pages/DashboardProfissionalSaude"
 import Home from "../pages/Home";
 import { Login } from "../pages/Login";
 import Page404 from "../pages/Page404";
-import { PerfilDoProfissional } from "../pages/PerfilDoProfissional";
+import { PerfilDoProfissional } from "../pages/PerfilDoProfissional;
 import Register from "../pages/Register";
 
 const RoutesMain = () => {
