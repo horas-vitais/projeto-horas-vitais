@@ -8,6 +8,11 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { Link } from "react-router-dom";
 import { api } from "../../services/api";
+import * as React from "react";
+
+import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
+import Card from "../../components/Card";
 
 interface IProfissional {
   name?: string;
@@ -35,16 +40,17 @@ interface Review {
 function ListaDeProfissionais() {
   const [comentario, setComentario] = useState([]);
 
-  const {
-    listaDeProfissionais,
-    setListaDeProfissionais,
-    filtroDeProfissionais,
-    setFiltroDeProfissionais,
-  } = useContext(ProfissionalContext);
+  const { listaDeProfissionais, setListaDeProfissionais } =
+    useContext(ProfissionalContext);
 
   useEffect(() => {
+    const token = localStorage.getItem("@HorasDeVida:Token");
+
+    if (token) {
+      api.defaults.headers.common["Authorization"] = token;
+    }
     api
-      .get("/users?isOng=false")
+      .get("/users")
       .then((res) => {
         setListaDeProfissionais(res.data);
       })
@@ -62,10 +68,9 @@ function ListaDeProfissionais() {
       <Doctors>
         <h2>Doadores</h2>
         <ul>
-          {filtroDeProfissionais.length > 0
-            ? filtroDeProfissionais.map((profissional: IProfissional) => (
+          {listaDeProfissionais.length > 0
+            ? listaDeProfissionais.map((profissional: IProfissional) => (
                 <li key={profissional.id}>
-                  <Link to="/visualizarPerfil">{profissional.name}</Link>
                   <Profissional
                     key={profissional.id}
                     profissional={profissional}
@@ -92,6 +97,9 @@ function ListaDeProfissionais() {
           {comentario.length > 0 ? (
             comentario.map((coment: Review) => (
               <li>
+                <h3>Reviews das Ongs</h3>
+
+                <Card />
                 <p>{coment?.review}</p>
               </li>
             ))

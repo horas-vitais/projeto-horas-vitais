@@ -6,7 +6,6 @@ import { DropDownMenu } from "../DropDownMenu";
 
 import { Link } from "react-router-dom";
 
-
 interface IProfissional {
   name?: string;
   CPF: string;
@@ -28,10 +27,10 @@ interface IProfissional {
 
 interface ProfissionalProps {
   profissional: IProfissional;
-  description: string | undefined,
+  description: string | undefined;
 }
 
-function Profissional({ profissional, description} : ProfissionalProps) {
+function Profissional({ profissional, description }: ProfissionalProps) {
   const token = localStorage.getItem("token");
 
   function sucessoAoDeletar() {
@@ -61,7 +60,7 @@ function Profissional({ profissional, description} : ProfissionalProps) {
         />
       </div>
       <div className="informacoesDoProfissional">
-        <Link to="/visualizarPerfil">
+        <Link to={`/visualizarPerfil/${profissional.id}`}>
           <h3 className="nomeDoProfissional">{profissional.name}</h3>
         </Link>
         <span>{profissional.areaAtuacao}</span>
