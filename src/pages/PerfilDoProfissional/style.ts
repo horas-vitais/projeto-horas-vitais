@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 85%;
-  height: 600px;
+  height: 80vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 
   border: solid 1px #16a085;
   border-radius: 20px;
-  margin-top: 10rem;
+  margin-top: 3rem;
   position: relative;
 
   .imagemFundo {
@@ -222,5 +222,21 @@ export const Review = styled.div`
   @media (max-width: 800px) {
     flex-direction: column;
     align-items: center;
+  }
+`;
+
+export const Button = styled.button`
+  color: var(--grey-1);
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  background-color: transparent;
+  margin-top: 100px;
+  margin-left: 3%;
+
+  @media (max-width: 720px) {
+    margin-top: 100px;
   }
 `;
