@@ -69,6 +69,7 @@ export const ContextProvider = ({ children }: ProviderChildren) => {
           setLoading(false)
         })
       }
+      setLoading(false)
     }
 
     request()
