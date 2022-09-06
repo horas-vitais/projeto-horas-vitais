@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { Contatos } from "../pages/Contatos";
 import ListaDeProfissionais from "../pages/DashboardOngs";
 import { DashboardProfissionalSaude } from "../pages/DashboardProfissionalSaude";
 import Home from "../pages/Home";
@@ -18,6 +19,7 @@ const RoutesMain = () => {
       <Route path="/dashboard" element={<ListaDeProfissionais />} />
       <Route path="*" element={<Page404 />} />
       <Route path="/visualizarPerfil/:id" element={<PerfilDoProfissional />} />
+      <Route path="/contatos" element={<Contatos />} />
     </Routes>
   );
 };
