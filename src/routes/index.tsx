@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoutes from "../components/ProtectedRoutes";
+import FilterProvider from "../contexts/filterContext";
 import ListaDeProfissionais from "../pages/DashboardOngs";
 import { DashboardProfissionalSaude } from "../pages/DashboardProfissionalSaude";
 import Home from "../pages/Home";
@@ -18,7 +19,7 @@ const RoutesMain = () => {
       <Route element={<ProtectedRoutes/>} >
         <Route path="/perfil" element={<DashboardProfissionalSaude />} />
         <Route path="/dashboard" element={<ListaDeProfissionais />} />
-        <Route path="/visualizarPerfil/:id" element={<PerfilDoProfissional />} />
+        <Route path="/visualizarPerfil/:id" element={<FilterProvider element={<PerfilDoProfissional />} />} />
       </Route>
       <Route path="*" element={<Page404 />} />
     </Routes>

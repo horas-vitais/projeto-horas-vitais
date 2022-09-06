@@ -13,6 +13,7 @@ import * as React from "react";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import Card from "../../components/Card";
+import FiltroDoadores from "../../components/FiltroDoadores";
 
 interface IProfissional {
   name?: string;
@@ -67,7 +68,10 @@ function ListaDeProfissionais() {
     <>
       <Header />
       <Doctors>
-        <h2>Doadores</h2>
+        <div className="row">
+          <h2>Doadores</h2>
+          <FiltroDoadores />
+        </div>
         <ul>
           {listaDeProfissionais.length > 0 ? (
             listaDeProfissionais.map((profissional: IProfissional) => (
