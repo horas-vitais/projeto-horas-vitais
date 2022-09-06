@@ -211,3 +211,89 @@ export const DivHorasDeVida = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const Review = styled.div`
+  position: absolute;
+  right: 50px;
+  bottom: 20px;
+  h1{
+    color:#16a085;
+    font-size: 16px;
+  }
+  div{
+    width: 300px;
+    height: 250px;
+    border: 1px solid black;
+  }
+  button{
+    border: 1px solid #50f6c1;
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 10px;
+    margin-left: 80px;
+    margin-top: 20px;
+  }
+  button:hover {
+    background-color: #50f6c1;
+  }
+  p{
+    margin-left: 12px;
+    width: 280px;
+    height: 250px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+`
+
+export const ModalDescription = styled.div`
+  width: 400px;
+  height: 350px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #baf4cc;
+
+  position: absolute;
+
+  border: solid 1px white;
+  border-radius: 20px;
+
+  padding: 2rem;
+
+  textarea{
+    resize:none;
+    height: 200px;
+    width: 300px;
+    padding: 10px;
+  }
+
+  button {
+    padding: 10px;
+  }
+
+  button:hover {
+    background-color: var(--green);
+  }
+
+  #botaox {
+    position: absolute;
+    top: 2px;
+    right: 9px;
+    border: none;
+    background-color: transparent;
+    padding: 5px;
+    border-radius: 40%;
+  }
+  #botaox:hover {
+    background-color: #028b30;
+  }
+
+  @media (max-width: 720px) {
+    width: 99%;
+  }
+`;
