@@ -1,7 +1,8 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
 import axios from "axios";
 import { FieldValues } from "react-hook-form";
 import { toast } from "react-toastify";
+import { api } from "../services/api";
 
 interface ProviderChildren {
   children: ReactNode;
@@ -10,16 +11,54 @@ interface ProviderChildren {
 interface IUser {
   email: string;
   id: number;
+  name: string;
+  cpf: string;
+  registroProfissional: string;
+  areaDeAtuacao: string;
+  isOng: boolean;
+  localidade?: string;
+  contato?: string;
+  disponivel?: string;
+  img?: string;
+  description?: string;
 }
 interface ContextProviderData {
   onSubmitFunction: (data: FieldValues) => void;
-  user: IUser;
+  user: IUser | null;
+  loading: boolean;
 }
 
 export const Context = createContext({} as ContextProviderData);
 
 export const ContextProvider = ({ children }: ProviderChildren) => {
-  const [user, setUser] = useState({} as IUser);
+  const [user, setUser] = useState<IUser | null>(null);
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const request = async () => {
+
+      const token = localStorage.getItem("@HorasDeVida:Token")  
+      const userId = localStorage.getItem("@HorasDeVida:Id")
+  
+      if(token){
+
+        api.get("isLogged", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then(async () => {
+
+          const { data } = await api.get<IUser>(`users/${userId}`)
+    
+          setUser(data)
+          setLoading(false)
+        })
+      }
+    }
+
+    request()
+  },[])
 
   const onSubmitFunction = (data: FieldValues) => {
     axios
@@ -42,7 +81,7 @@ export const ContextProvider = ({ children }: ProviderChildren) => {
       );
   };
   return (
-    <Context.Provider value={{ onSubmitFunction, user }}>
+    <Context.Provider value={{ onSubmitFunction, user, loading }}>
       {children}
     </Context.Provider>
   );

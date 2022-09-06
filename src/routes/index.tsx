@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import ProtectedRoutes from "../components/ProtectedRoutes";
 import ListaDeProfissionais from "../pages/DashboardOngs";
 import { DashboardProfissionalSaude } from "../pages/DashboardProfissionalSaude";
 import Home from "../pages/Home";
@@ -12,8 +13,10 @@ const RoutesMain = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/perfil" element={<DashboardProfissionalSaude />} />
-      <Route path="/dashboard" element={<ListaDeProfissionais />} />
+      <Route element={<ProtectedRoutes/>} >
+        <Route path="/perfil" element={<DashboardProfissionalSaude />} />
+        <Route path="/dashboard" element={<ListaDeProfissionais />} />
+      </Route>
     </Routes>
   );
 };
