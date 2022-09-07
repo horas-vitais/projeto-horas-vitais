@@ -1,19 +1,19 @@
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
-import "./style";
 import { ProfissionalContext } from "../../Providers/contextProfissional";
 import { DivClientReview, Doctors } from "./style";
 import Profissional from "../../components/Profissional";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { Link } from "react-router-dom";
 import { api } from "../../services/api";
+
 import * as React from "react";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
+
 import Card from "../../components/Card";
 import FiltroDoadores from "../../components/FiltroDoadores";
 import MeuProfissional from "../../components/MeuProfissional";
+import "./style";
 
 
 interface IProfissional {
@@ -34,7 +34,7 @@ interface IProfissional {
   description?: string;
   disposicao: string;
   disponivel?: string;
-  userId?: string,
+  userId?: string;
 }
 
 interface Review {
@@ -42,6 +42,7 @@ interface Review {
 }
 
 function ListaDeProfissionais() {
+
   const { filtroDeProfissionais, setListaDeProfissionais } =
   useContext(ProfissionalContext);
 
@@ -83,6 +84,38 @@ function ListaDeProfissionais() {
   //     .catch((err) => console.error(err));
   // }, []);
 
+
+
+  const ongId = localStorage.getItem("@HorasDeVida:Id");
+  const { listaDeProfissionais, setListaDeProfissionais } =
+    useContext(ProfissionalContext);
+
+  const [meusMedicos, setMeusMedicos] = useState([]);
+  const [comentario, setComentario] = useState([]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("@HorasDeVida:Token");
+
+    if (token) {
+      api.defaults.headers.common["Authorization"] = token;
+    }
+    api
+      .get("/users")
+      .then((res) => {
+        setListaDeProfissionais(res.data);
+      })
+      .catch((err) => console.log(err));
+
+    api
+      .get("/db")
+      .then((res) => setComentario(res.data.reviews))
+      .catch((err) => console.error(err));
+
+    api
+      .get("https://horasvitais.herokuapp.com/medics")
+      .then((res) => setMeusMedicos(res.data))
+      .catch((err) => console.log(err));
+  }, [meusMedicos]);
 
 
   return (
@@ -132,16 +165,18 @@ function ListaDeProfissionais() {
         <h2>Meus médicos</h2>
         <ul>
           {meusMedicos.length > 0 ? (
-            meusMedicos.map((profissional: IProfissional) => (
-              profissional.userId === ongId &&
-              <li key={profissional.id}>
-                <MeuProfissional
-                  key={profissional.id}
-                  profissional={profissional}
-                  description={profissional.description}
-                />
-              </li>
-            ))
+            meusMedicos.map(
+              (profissional: IProfissional) =>
+                profissional.userId === ongId && (
+                  <li key={profissional.id}>
+                    <MeuProfissional
+                      key={profissional.id}
+                      profissional={profissional}
+                      description={profissional.description}
+                    />
+                  </li>
+                )
+            )
           ) : (
             <p>Carregando...</p>
           )}

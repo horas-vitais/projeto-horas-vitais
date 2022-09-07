@@ -2,7 +2,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { DropDownMenu } from "../DropDownMenu";
 import { Link } from "react-router-dom";
 import { api } from "../../services/api";
-import { toast } from "react-toastify"
+import { toast } from "react-toastify";
 
 interface IProfissional {
   name?: string;
@@ -22,7 +22,7 @@ interface IProfissional {
   description?: string;
   disposicao: string;
   disponivel?: string;
-  userId?: string
+  userId?: string;
 }
 
 interface ProfissionalProps {
@@ -30,41 +30,40 @@ interface ProfissionalProps {
   description: string | undefined;
 }
 function MeuProfissional({ profissional, description }: ProfissionalProps) {
-  
-  function removerProfissional(id: number){
+  function removerProfissional(id: number) {
     const token = localStorage.getItem("@HorasDeVida:Token");
-    const userId = localStorage.getItem("@HorasDeVida:Id")
+    const userId = localStorage.getItem("@HorasDeVida:Id");
 
-    api.delete(`https://horasvitais.herokuapp.com/medics/${id}}`,
-    {
+    api
+      .delete(`https://horasvitais.herokuapp.com/medics/${id}}`, {
         headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }
-    )
-    .then((res) => {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
         toast.success("Médico removido com sucesso!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-    })
-    .catch((err) => {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((err) => {
         toast.error("Ops , algo deu errado!", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-    })
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   }
+
   return (
     <>
       <div className="profissionalImgContainer">
@@ -78,12 +77,16 @@ function MeuProfissional({ profissional, description }: ProfissionalProps) {
         <Link to={`/visualizarPerfil/${profissional.id}`}>
           <h3 className="nomeDoProfissional">{profissional.name}</h3>
         </Link>
-        <span>{profissional.areaDeAtuacao}</span>
-        </div>
-        <DropDownMenu description={description}></DropDownMenu>
-        <button onClick={() => removerProfissional(profissional.id)}>REMOVER</button>
+
+        <span>{profissional.areaAtuacao}</span>
+      </div>
+      <DropDownMenu description={description}></DropDownMenu>
+      <button onClick={() => removerProfissional(profissional.id)}>
+        REMOVER
+      </button>
+
     </>
   );
 }
 
-export default MeuProfissional
+export default MeuProfissional;
