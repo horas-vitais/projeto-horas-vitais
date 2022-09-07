@@ -136,8 +136,99 @@ export const Container = styled.div`
   }
 
   @media (max-width: 720px) {
-    width: 95vw;
-    height: 80vh;
+    width: 85%;
+    height: 60%;
+
+    .imagemFundo {
+      width: 100%;
+      height: 20vh;
+    }
+
+    .ladoEsquerdo {
+      max-width: 33.33%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .imagemDePerfil {
+      height: 80%;
+      width: 80%;
+    }
+
+    .ladoEsquerdo h2 {
+      align-self: center;
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+
+    .ladoEsquerdo p {
+      margin-top: 1rem;
+      font-size: 80%;
+    }
+
+    .ladoEsquerdo span {
+      margin-top: 0.3rem;
+      font-size: 80%;
+    }
+
+    .meio {
+      max-width: 33.33%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .meio h3 {
+      align-self: center;
+      margin-top: 3rem;
+      font-size: 80%;
+    }
+
+    .meio p {
+      align-self: center;
+      margin-top: 0.3rem;
+      font-size: 80%;
+    }
+
+    .meio span {
+      margin-top: 1.5rem;
+      font-weight: 520;
+      font-size: 80%;
+    }
+
+    .meio .registro {
+      font-size: 80%;
+      margin-top: 1.5rem;
+      font-weight: 600;
+    }
+
+    .meio .registro p {
+      margin-left: 30%;
+      margin-top: 0.5rem;
+      font-size: 80%;
+    }
+
+    .ladoDireito {
+      width: 33.33%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .ladoDireito .review {
+      width: 10vw;
+      height: 10vh;
+      background-color: #fff;
+      cursor: pointer;
+      color: var(--green);
+      border-radius: 100%;
+      font-size: 50%;
+      margin-top: 5rem;
+      border: 2px solid var(--green);
+      overflow: hidden;
+    }
   }
 `;
 
@@ -219,9 +310,51 @@ export const Review = styled.div`
     border: 2px solid var(--green);
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 720px) {
     flex-direction: column;
     align-items: center;
+
+    .modal {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      height: 100%;
+    }
+
+    .faixa {
+      display: flex;
+      height: 2rem;
+      margin: 2%;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 5px;
+    }
+    .modal h2 {
+      margin-left: 2%;
+      font-size: 75%;
+    }
+    textarea {
+      width: 80%;
+      height: 70%;
+      font-size: 60%;
+    }
+
+    .botaox {
+      width: 20%;
+      height: 60%;
+      border-radius: 5px;
+      margin-right: 3%;
+    }
+
+    .modal .salvar {
+      width: 60%;
+      height: 80%;
+      margin: 2%;
+      font-size: 80%;
+      border-radius: 5px;
+    }
   }
 `;
 
