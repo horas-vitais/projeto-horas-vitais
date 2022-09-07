@@ -10,6 +10,7 @@ import { Login } from "../pages/Login";
 import Page404 from "../pages/Page404";
 import { PerfilDoProfissional } from "../pages/PerfilDoProfissional";
 import Register from "../pages/Register";
+import SobrePage from "../pages/Sobre";
 
 const RoutesMain = () => {
   return (
@@ -27,8 +28,8 @@ const RoutesMain = () => {
         />
       </Route>
       <Route path="*" element={<Page404 />} />
-
       <Route path="/contatos" element={<Contatos />} />
+      <Route path="/sobre" element={<SobrePage />} />
     </Routes>
   );
 };
