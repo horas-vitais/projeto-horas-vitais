@@ -44,6 +44,7 @@ export const ContextProvider = ({ children }: ProviderChildren) => {
 
       const token = localStorage.getItem("@HorasDeVida:Token")  
       const userId = localStorage.getItem("@HorasDeVida:Id")
+      
       if(token){
         
         api.get("isLogged", {

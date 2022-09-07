@@ -42,6 +42,7 @@ export interface IProfissional {
   registroProfissional: string;
   description?: string;
   disposicao: string;
+  userId?: string
 }
 
 export const ProfissionalContext = createContext({} as ProfissionalContextData);

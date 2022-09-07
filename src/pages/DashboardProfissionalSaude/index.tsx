@@ -38,6 +38,7 @@ interface PerfilUsuario {
   contato?: string;
   disponivel: boolean;
   description: string;
+  userId?: string
 }
 
 export const DashboardProfissionalSaude = () => {

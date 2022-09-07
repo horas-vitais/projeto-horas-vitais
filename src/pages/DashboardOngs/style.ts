@@ -3,11 +3,11 @@ import styled from "styled-components";
 export const Doctors = styled.section`
   margin-top: 8rem;
   ul {
-    width: 95%;
+    width: 100%;
     display: flex;
     gap: 1rem;
     overflow: auto;
-    padding: 7rem;
+    padding: 2rem 0 7rem 0;
     display: flex;
   }
   li {
@@ -20,6 +20,7 @@ export const Doctors = styled.section`
     border: 2px solid #16a085;
     box-shadow: 0.8rem 0.5rem 0 rgba(22, 160, 133, 0.2);
     padding: 2rem;
+    margin-left: 25px;
     .informacoesDoProfissional {
       display: flex;
       flex-direction: column;

@@ -2,6 +2,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { DropDownMenu } from "../DropDownMenu";
 import { Link } from "react-router-dom";
 import { Div } from "./style";
+import { api } from "../../services/api";
+import { toast } from "react-toastify"
 
 interface IProfissional {
   name?: string;
@@ -21,6 +23,7 @@ interface IProfissional {
   description?: string;
   disposicao: string;
   disponivel?: string;
+  userId?: string
 }
 
 interface ProfissionalProps {
@@ -28,6 +31,50 @@ interface ProfissionalProps {
   description: string | undefined;
 }
 function Profissional({ profissional, description }: ProfissionalProps) {
+  
+  function selecionarProfissional(id: number){
+    const token = localStorage.getItem("@HorasDeVida:Token");
+    const userId = localStorage.getItem("@HorasDeVida:Id")
+
+    api
+      .post(
+        `/medics`,
+        {
+          ...profissional,
+          userId: userId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        toast.success("Médico Selecionado!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      })
+      .catch((res) => {
+        toast.error("Médico Já selecionado", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        console.log(res)
+      });
+  
+  }
+
   return (
     <>
       <div className="profissionalImgContainer">
@@ -52,7 +99,7 @@ function Profissional({ profissional, description }: ProfissionalProps) {
           <DropDownMenu description={description}></DropDownMenu>
         </Div>
       </div>
-      <button>SELECIONAR</button>
+      <button onClick={() => selecionarProfissional(profissional.id)}>SELECIONAR</button>
     </>
   );
 }
