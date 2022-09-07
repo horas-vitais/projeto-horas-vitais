@@ -35,6 +35,8 @@ interface perfilProfissionalContextData{
     trocarDescricao: () => void,
     trocarContato: () => void,
     handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+    editarPerfil: boolean,
+    setEditarPerfil: React.Dispatch<SetStateAction<boolean>>,
 }
 
 interface perfilProfissionalProviderProps{
@@ -47,11 +49,11 @@ interface PerfilUsuario {
     email: string;
     id: number;
     isOng: boolean;
-    name: string;
+    nome: string;
     password: string;
     registroProfissional: string;
     img?: string;
-    localidade?: string;
+    cidade?: string;
     contato?: string;
     disponivel: boolean;
     description: string;
@@ -81,6 +83,8 @@ export const PerfilProfissionalProvider = ({ children, }: perfilProfissionalProv
 
     const [modalContato, setModalContato] = useState<boolean>(false);
     const [inputContato, setInputContato] = useState<string>("");
+
+    const [editarPerfil, setEditarPerfil] = useState(false);
 
     const [reaload, setReload] = useState<boolean>(false);
 
@@ -138,7 +142,7 @@ export const PerfilProfissionalProvider = ({ children, }: perfilProfissionalProv
         .patch(
             `/users/${usuario?.id}`,
             {
-            name: `${inputNome}`,
+            nome: `${inputNome}`,
             },
             {
             headers: {
@@ -180,7 +184,7 @@ export const PerfilProfissionalProvider = ({ children, }: perfilProfissionalProv
         .patch(
             `/users/${usuario?.id}`,
             {
-            localidade: `${inputLocalidade}`,
+            cidade: `${inputLocalidade}`,
             },
             {
             headers: {
@@ -374,6 +378,8 @@ export const PerfilProfissionalProvider = ({ children, }: perfilProfissionalProv
             trocarDescricao,
             trocarContato,
             handleChange,
+            editarPerfil,
+            setEditarPerfil,
         }}>
             {children}
         </perfilProfissionalContext.Provider>

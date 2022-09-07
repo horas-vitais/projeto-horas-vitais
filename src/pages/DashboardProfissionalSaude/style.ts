@@ -75,7 +75,7 @@ export const Container = styled.div`
 
   .meio h3 {
     align-self: center;
-    margin-top: 6rem;
+    margin-top: 3rem;
   }
 
   .meio p {
@@ -122,6 +122,12 @@ export const Container = styled.div`
     border-radius: 15px;
     border: 1px solid #16a085;
     padding: 1rem;
+
+    p {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+    }
   }
 
   .ladoDireito .review {
