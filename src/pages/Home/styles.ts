@@ -22,7 +22,7 @@ export const HomeContainer = styled.div`
     align-items: center;
   }
   .about .caixa .image img {
-    height: 325px;
+    height: 300px;
   }
 
   .about .caixa .content h3 {
@@ -38,6 +38,11 @@ export const HomeContainer = styled.div`
     padding: 1rem 0;
     font-size: 1rem;
     line-height: 1.8;
+  }
+  @media (max-width: 900px) {
+    .about .caixa .content p {
+      width: 90vw;
+    }
   }
   .heading {
     text-align: center;
@@ -126,85 +131,90 @@ export const HomeContainer = styled.div`
     padding: 1rem 0;
   }
   @media (max-width: 900px) {
-    .Container {
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
+    .home .content p {
+      width: 90vw;
     }
-    .home {
-      width: 100%;
-      h3 {
-        width: 70%;
+    @media (max-width: 900px) {
+      .Container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+      .home {
+        width: 100%;
+        h3 {
+          width: 70%;
+        }
+      }
+      .content {
+        width: 100%;
+        text-align: center;
+      }
+      .content button {
+        font-size: 1rem;
+        margin-top: 2rem;
+        padding: 0.2rem;
+        padding-left: 1rem;
       }
     }
-    .content {
-      width: 100%;
-      text-align: center;
-    }
-    .content button {
-      font-size: 1rem;
-      margin-top: 2rem;
-      padding: 0.2rem;
-      padding-left: 1rem;
-    }
-  }
-  @media (max-width: 500px) {
-    .Container {
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-    .home {
-      width: 100%;
-      h3 {
+    @media (max-width: 500px) {
+      .Container {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+      .home {
+        width: 100%;
+        h3 {
+          width: 100%;
+        }
+      }
+      .content {
+        text-align: center;
         width: 100%;
       }
     }
-    .content {
-      text-align: center;
-      width: 100%;
-    }
-  }
-  @media (max-width: 370px) {
-    .Container {
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-    .home {
-      width: 100%;
-      h3 {
+    @media (max-width: 370px) {
+      .Container {
+        flex-direction: column;
+        align-items: center;
         width: 100%;
-        font-size: 2rem;
       }
-      .content h2 {
-        font-size: 1.5rem;
+      .home {
+        width: 100%;
+        h3 {
+          width: 100%;
+          font-size: 2rem;
+        }
+        .content h2 {
+          font-size: 1.5rem;
+        }
+      }
+      .content {
+        text-align: center;
+        width: 100%;
+      }
+      .content button {
+        font-size: 1rem;
+        margin-top: 1rem;
+        width: 80vw;
+        padding: 0.2rem;
+        padding-left: 1rem;
+      }
+      .about {
+        h1 {
+          font-size: 2.3rem;
+        }
       }
     }
-    .content {
-      text-align: center;
-      width: 100%;
-    }
-    .content button {
-      font-size: 1rem;
-      margin-top: 1rem;
-      width: 80vw;
-      padding: 0.2rem;
-      padding-left: 1rem;
-    }
-    .about {
-      h1 {
-        font-size: 2.3rem;
+    @media (max-width: 300px) {
+      .content button {
+        font-size: 1rem;
+        margin-top: 1rem;
+        width: 100vw;
+        padding: 0.2rem;
+        padding-left: 1rem;
       }
-    }
-  }
-  @media (max-width: 300px) {
-    .content button {
-      font-size: 1rem;
-      margin-top: 1rem;
-      width: 100vw;
-      padding: 0.2rem;
-      padding-left: 1rem;
     }
   }
 `;

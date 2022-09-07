@@ -13,22 +13,22 @@ const Home = () => {
       <Header />
       <div className="Container">
         <section className="home" id="home">
-          <h3 className="heading">
+          <h1 className="heading">
             Para o profissional de <span>saúde</span>
-          </h3>
+          </h1>
           <Relogio />
 
           <div className="content">
             <h2>Doe suas horas livres e as tranforme em vida para alguém.</h2>
+
             <p>
-              Registre-se como instituição e procure o profissional que precisa
-              mais próximo possível.
+              Registre-se como Profissional de saúde e doe algumas horas para
+              salvar a vida de alguém
             </p>
             <p>
-              Entre aqui, cadastre a instituição e faça uma seleção de
-              profissionais da saúde que necessita. É só entrar, escolher o
-              profissional e pronto, ele reeberá seu chamado para atender no
-              horário requerido.
+              Entre aqui, cadastre seu perfil e faça disponha do seu horário de
+              atendimento. É só entrar, ficar disponível e pronto, uma ONG
+              entrará em contato com você.
             </p>
             <button onClick={() => navigate("/register", { replace: true })}>
               DOAR
