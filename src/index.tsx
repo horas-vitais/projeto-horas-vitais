@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { ContextProvider } from "./contexts/contextLogin";
 import { ProfissionalProvider } from "./Providers/contextProfissional";
 import { ToastContainer } from "react-toastify";
+import { PerfilProfissionalProvider } from "./Providers/contextPerfilProfissional";
 import App from "./App";
 
 const root = ReactDOM.createRoot(
@@ -18,7 +19,9 @@ root.render(
         <GlobalStyle />
         <ToastContainer />
         <ProfissionalProvider>
-          <App></App>
+          <PerfilProfissionalProvider>
+            <App></App>
+          </PerfilProfissionalProvider>
         </ProfissionalProvider>
       </ContextProvider>
     </BrowserRouter>

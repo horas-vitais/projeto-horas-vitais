@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import axios from "axios";
+import { api } from "../services/api";
 
 interface ProfissionalContextProps {
   children: ReactNode;
@@ -23,8 +24,15 @@ interface ProfissionalContextData {
   setListaDeProfissionais: React.Dispatch<SetStateAction<IProfissional[]>>;
   filtroDeProfissionais: IProfissional[];
   filtrar: (newValue: string) => void; 
+  meusMedicos: IProfissional[],
+  setMeusMedicos: React.Dispatch<SetStateAction<IProfissional[]>>;
+  comentario: Review[],
+  setComentario: React.Dispatch<SetStateAction<Review[]>>;
+  ongId: string | null,
 }
-
+interface Review {
+  review: string;
+}
 export interface IProfissional {
   name?: string;
   CPF: string;
@@ -140,6 +148,38 @@ export const ProfissionalProvider = ({
     profissionalsRequest();
   }, []);
 
+const ongId = localStorage.getItem("@HorasDeVida:Id");
+
+const [meusMedicos, setMeusMedicos] = useState<IProfissional[]>([]);
+const [comentario, setComentario] = useState<Review[]>([]);
+
+useEffect(() => {
+  const token = localStorage.getItem("@HorasDeVida:Token");
+
+  if (token) {
+    api.defaults.headers.common["Authorization"] = token;
+  }
+  api
+    .get("/users")
+    .then((res) => {
+      setListaDeProfissionais(res.data);
+    })
+    .catch((err) => console.log(err));
+
+  api
+    .get("/db")
+    .then((res) => setComentario(res.data.reviews))
+    .catch((err) => console.error(err));
+
+  api
+    .get("https://horasvitais.herokuapp.com/medics")
+    .then((res) => setMeusMedicos(res.data))
+    .catch((err) => console.log(err));
+}, [meusMedicos]);
+/* ============================================ */
+
+
+
   return (
     <ProfissionalContext.Provider
       value={{
@@ -149,7 +189,12 @@ export const ProfissionalProvider = ({
         removerDaAreaSelecionados,
         setListaDeProfissionais,
         filtroDeProfissionais,
-        filtrar
+        filtrar,
+        meusMedicos,
+        setMeusMedicos,
+        comentario,
+        setComentario,
+        ongId,
       }}
     >
       {children}

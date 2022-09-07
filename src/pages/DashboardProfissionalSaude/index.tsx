@@ -17,307 +17,37 @@ import {
   Section,
   SectionContato,
 } from "./style";
-import { useEffect, useState } from "react";
-import { api } from "../../services/api";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import { toast } from "react-toastify";
 import Switch from "@mui/material/Switch";
 import * as React from "react";
-interface PerfilUsuario {
-  CPF: number;
-  areaDeAtuacao: string;
-  email: string;
-  id: number;
-  isOng: boolean;
-  name: string;
-  password: string;
-  registroProfissional: string;
-  img?: string;
-  localidade?: string;
-  contato?: string;
-  disponivel: boolean;
-  description: string;
-  userId?: string;
-}
+import { perfilProfissionalContext } from "../../Providers/contextPerfilProfissional";
 
 export const DashboardProfissionalSaude = () => {
-  const [checked, setChecked] = React.useState(true);
-
-  const [usuario, setUsuario] = useState<PerfilUsuario>();
-
-  const [modalDescription, setModalDescription] = useState(false);
-  const [inputDescription, setInputDescription] = useState("");
-
-  const [modalFotoPerfil, setModalFotoPerfil] = useState(false);
-  const [inputFotoPerfil, setInputFotoPerfil] = useState("");
-
-  const [modalNomePerfil, setModalNomePerfil] = useState(false);
-  const [inputNome, setInputNome] = useState("");
-
-  const [modalLocalidade, setModalLocalidade] = useState(false);
-  const [inputLocalidade, setInputLocalidade] = useState("");
-
-  const [modalContato, setModalContato] = useState(false);
-  const [inputContato, setInputContato] = useState("");
-
-  const [reaload, setReload] = useState(false);
-
-  useEffect(() => {
-    const id = localStorage.getItem("@HorasDeVida:Id");
-    api.get(`/users/${id}`).then((response) => setUsuario(response.data));
-  }, [reaload]);
-
-  function trocarFotoDePerfil() {
-    const token = localStorage.getItem("@HorasDeVida:Token");
-
-    api
-      .patch(
-        `/users/${usuario?.id}`,
-        {
-          img: `${inputFotoPerfil}`,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => {
-        toast.success("Foto alterada com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        setModalFotoPerfil(!ModalFotoPerfil);
-        setReload(!reaload);
-      })
-      .catch((res) => {
-        toast.error("Ops , algo deu errado!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        setModalFotoPerfil(!ModalFotoPerfil);
-      });
-  }
-
-  function trocarNome() {
-    const token = localStorage.getItem("@HorasDeVida:Token");
-
-    api
-      .patch(
-        `/users/${usuario?.id}`,
-        {
-          name: `${inputNome}`,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => {
-        toast.success("Nome alterado com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        setModalNomePerfil(!modalNomePerfil);
-        setReload(!reaload);
-      })
-      .catch((res) => {
-        toast.error("Ops , algo deu errado!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        setModalNomePerfil(!modalNomePerfil);
-      });
-  }
-
-  function trocarLocalidade() {
-    const token = localStorage.getItem("@HorasDeVida:Token");
-
-    api
-      .patch(
-        `/users/${usuario?.id}`,
-        {
-          localidade: `${inputLocalidade}`,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => {
-        toast.success("Localidade alterada com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        setModalLocalidade(!modalLocalidade);
-        setReload(!reaload);
-      })
-      .catch((res) => {
-        toast.error("Ops , algo deu errado!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        setModalLocalidade(!modalLocalidade);
-      });
-  }
-
-  function trocarDescricao() {
-    const token = localStorage.getItem("@HorasDeVida:Token");
-
-    api
-      .patch(
-        `/users/${usuario?.id}`,
-        {
-          description: `${inputDescription}`,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => {
-        toast.success("Descrição alterada com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        setModalDescription(!modalDescription);
-        setReload(!reaload);
-      })
-      .catch((err) => {
-        toast.error("Ops , algo deu errado!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        console.log(err);
-      });
-  }
-
-  function trocarContato() {
-    const token = localStorage.getItem("@HorasDeVida:Token");
-
-    api
-      .patch(
-        `/users/${usuario?.id}`,
-        {
-          contato: `${inputContato}`,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => {
-        toast.success("Contato alterada com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        setModalContato(!modalContato);
-        setReload(!reaload);
-      })
-      .catch((res) => {
-        toast.error("Ops , algo deu errado!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        setModalContato(!modalContato);
-      });
-  }
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked);
-
-    const token = localStorage.getItem("@HorasDeVida:Token");
-
-    api
-      .patch(
-        `/users/${usuario?.id}`,
-        {
-          disponivel: `${checked}`,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((res) => {
-        toast.success("Disponibilidade alterada com sucesso!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      })
-      .catch((res) => {
-        toast.error("Ops , algo deu errado!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
-  };
+  
+  const { checked,
+    usuario,
+    modalDescription, 
+    setModalDescription,
+    setInputDescription,
+    modalFotoPerfil,
+    setModalFotoPerfil,
+    setInputFotoPerfil,
+    modalNomePerfil, 
+    setModalNomePerfil,
+    setInputNome,
+    modalLocalidade, 
+    setModalLocalidade,
+    setInputLocalidade,
+    modalContato, 
+    setModalContato, 
+    setInputContato,
+    trocarFotoDePerfil,
+    trocarNome,
+    trocarLocalidade,
+    trocarDescricao,
+    trocarContato,
+    handleChange } = React.useContext( perfilProfissionalContext )
 
   return (
     <>
