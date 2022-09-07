@@ -12,7 +12,7 @@ import backArrow from "../../assets/backArrow.svg";
 import { Button } from "./style";
 
 interface PerfilUsuario {
-  CPF: number;
+  cpf: number;
   areaDeAtuacao: string;
   email: string;
   id: number;
@@ -21,7 +21,7 @@ interface PerfilUsuario {
   password: string;
   registroProfissional: string;
   img?: string;
-  localidade?: string;
+  cidade?: string;
   contato?: string;
   disponivel: boolean;
   review: string;
@@ -39,6 +39,7 @@ export const PerfilDoProfissional = () => {
   const { id } = useParams();
   useEffect(() => {
     api.get(`/users/${id}`).then((response) => setUsuario(response.data));
+    console.log(usuario);
   }, [reaload]);
 
   function postarReview() {
@@ -118,10 +119,10 @@ export const PerfilDoProfissional = () => {
             <span>{usuario?.areaDeAtuacao}</span>
           </div>
           <div className="meio">
-            {usuario?.localidade ? (
+            {usuario?.cidade ? (
               <div>
                 <h3>LOCALIZAÇÃO</h3>
-                <p>{usuario.localidade}</p>
+                <p>{usuario.cidade}</p>
               </div>
             ) : (
               <div>
