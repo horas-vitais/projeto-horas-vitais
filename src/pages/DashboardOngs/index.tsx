@@ -13,6 +13,7 @@ import * as React from "react";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import Card from "../../components/Card";
+import MeuProfissional from "../../components/MeuProfissional";
 
 interface IProfissional {
   name?: string;
@@ -32,6 +33,7 @@ interface IProfissional {
   description?: string;
   disposicao: string;
   disponivel?: string;
+  userId?: string,
 }
 
 interface Review {
@@ -39,6 +41,24 @@ interface Review {
 }
 
 function ListaDeProfissionais() {
+  const token = localStorage.getItem("@HorasDeVida:Token")
+  const ongId = localStorage.getItem("@HorasDeVida:Id")
+
+  const [meusMedicos, setMeusMedicos] = useState([])
+
+  useEffect(() => {
+    api.get("https://horasvitais.herokuapp.com/medics", 
+      {
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+    .then((res) => setMeusMedicos(res.data))
+    .catch((err) => console.log(err))
+  },
+ [])
+
   const [comentario, setComentario] = useState([]);
 
   const { listaDeProfissionais, setListaDeProfissionais } =
@@ -103,6 +123,25 @@ function ListaDeProfissionais() {
           )}
         </ul>
       </DivClientReview>
+      <Doctors>
+        <h2>Meus médicos</h2>
+        <ul>
+          {meusMedicos.length > 0 ? (
+            meusMedicos.map((profissional: IProfissional) => (
+              profissional.userId === ongId &&
+              <li key={profissional.id}>
+                <MeuProfissional
+                  key={profissional.id}
+                  profissional={profissional}
+                  description={profissional.description}
+                />
+              </li>
+            ))
+          ) : (
+            <p>Carregando...</p>
+          )}
+        </ul>
+      </Doctors>
 
       <Footer />
     </>
