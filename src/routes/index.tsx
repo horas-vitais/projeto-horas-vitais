@@ -1,8 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoutes from "../components/ProtectedRoutes";
-
 import { Contatos } from "../pages/Contatos";
-
 import ListaDeProfissionais from "../pages/DashboardOngs";
 import { DashboardProfissionalSaude } from "../pages/DashboardProfissionalSaude";
 import Home from "../pages/Home";

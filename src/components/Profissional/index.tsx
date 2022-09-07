@@ -8,7 +8,7 @@ import { toast } from "react-toastify"
 interface IProfissional {
   name?: string;
   CPF: string;
-  areaAtuacao: string;
+  areaDeAtuacao?: string;
   contato: string;
   email: string;
   id: number;
@@ -88,7 +88,7 @@ function Profissional({ profissional, description }: ProfissionalProps) {
         <Link to={`/visualizarPerfil/${profissional.id}`}>
           <h3 className="nomeDoProfissional">{profissional.name}</h3>
         </Link>
-        <span>{profissional.areaAtuacao}</span>
+        <span>{profissional.areaDeAtuacao}</span>
         <Div>
           {profissional.disponivel === "true" ? (
             <h4 className="disponivel">Disponível</h4>

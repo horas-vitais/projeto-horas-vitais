@@ -22,13 +22,13 @@ interface ProfissionalContextData {
   removerDaAreaSelecionados: (profissionalId: string) => void;
   setListaDeProfissionais: React.Dispatch<SetStateAction<IProfissional[]>>;
   filtroDeProfissionais: IProfissional[];
-  setFiltroDeProfissionais: React.Dispatch<SetStateAction<IProfissional[]>>;
+  filtrar: (newValue: string) => void; 
 }
 
-interface IProfissional {
+export interface IProfissional {
   name?: string;
   CPF: string;
-  areaAtuacao: string;
+  areaDeAtuacao: string;
   contato: string;
   email: string;
   id: number;
@@ -58,6 +58,12 @@ export const ProfissionalProvider = ({
     IProfissional[]
   >([]);
 
+  function filtrar(filtrarPor: string){
+    const newArr = listaDeProfissionais.filter(elem => elem.areaDeAtuacao.toLowerCase().includes(filtrarPor.trim()))
+    
+    setFiltroDeProfissionais(newArr)
+  }
+
   const base_URL = "https://horasvitais.herokuapp.com";
 
   const token = localStorage.getItem("token");
@@ -77,7 +83,10 @@ export const ProfissionalProvider = ({
   const profissionalsRequest = () => {
     axios
       .get(`${base_URL}/users?isOng=false`)
-      .then((response) => setListaDeProfissionais(response.data))
+      .then((response) => {
+        setListaDeProfissionais(response.data)
+        setFiltroDeProfissionais(response.data)
+      })
       .catch((err) => console.log(err));
   };
 
@@ -87,7 +96,7 @@ export const ProfissionalProvider = ({
     const novoUsuarioProfissional = {
       image: profissional.img,
       name: profissional.name,
-      areaAtuacao: profissional.areaAtuacao,
+      areaAtuacao: profissional.areaDeAtuacao,
       description: profissional.description,
       registroProfissional: profissional.registroProfissional,
       id: profissional.id,
@@ -140,7 +149,7 @@ export const ProfissionalProvider = ({
         removerDaAreaSelecionados,
         setListaDeProfissionais,
         filtroDeProfissionais,
-        setFiltroDeProfissionais,
+        filtrar
       }}
     >
       {children}

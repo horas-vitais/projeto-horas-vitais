@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 interface IProfissional {
   name?: string;
   CPF: string;
-  areaAtuacao: string;
+  areaDeAtuacao: string;
   contato: string;
   email: string;
   id: number;
@@ -77,12 +77,14 @@ function MeuProfissional({ profissional, description }: ProfissionalProps) {
         <Link to={`/visualizarPerfil/${profissional.id}`}>
           <h3 className="nomeDoProfissional">{profissional.name}</h3>
         </Link>
+
         <span>{profissional.areaAtuacao}</span>
       </div>
       <DropDownMenu description={description}></DropDownMenu>
       <button onClick={() => removerProfissional(profissional.id)}>
         REMOVER
       </button>
+
     </>
   );
 }

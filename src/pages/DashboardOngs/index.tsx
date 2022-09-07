@@ -5,14 +5,21 @@ import Profissional from "../../components/Profissional";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { api } from "../../services/api";
+
+import * as React from "react";
+import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
+
 import Card from "../../components/Card";
+import FiltroDoadores from "../../components/FiltroDoadores";
 import MeuProfissional from "../../components/MeuProfissional";
 import "./style";
+
 
 interface IProfissional {
   name?: string;
   CPF: string;
-  areaAtuacao: string;
+  areaDeAtuacao: string;
   contato: string;
   email: string;
   id: number;
@@ -35,6 +42,50 @@ interface Review {
 }
 
 function ListaDeProfissionais() {
+
+  const { filtroDeProfissionais, setListaDeProfissionais } =
+  useContext(ProfissionalContext);
+
+  const token = localStorage.getItem("@HorasDeVida:Token")
+  const ongId = localStorage.getItem("@HorasDeVida:Id")
+
+  const [meusMedicos, setMeusMedicos] = useState([])
+
+  useEffect(() => {
+    api.get("https://horasvitais.herokuapp.com/medics", 
+      {
+        headers:{
+          Authorization: `Bearer ${token}`
+        }
+      }
+    )
+    .then((res) => setMeusMedicos(res.data))
+    .catch((err) => console.log(err))
+  },[])
+
+  const [comentario, setComentario] = useState([]);
+  
+  // useEffect(() => {
+  //   const token = localStorage.getItem("@HorasDeVida:Token");
+
+  //   if (token) {
+  //     api.defaults.headers.common["Authorization"] = token;
+  //   }
+  //   api
+  //     .get("/users")
+  //     .then((res) => {
+  //       setListaDeProfissionais(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+
+  //   api
+  //     .get("/db")
+  //     .then((res) => setComentario(res.data.reviews))
+  //     .catch((err) => console.error(err));
+  // }, []);
+
+
+
   const ongId = localStorage.getItem("@HorasDeVida:Id");
   const { listaDeProfissionais, setListaDeProfissionais } =
     useContext(ProfissionalContext);
@@ -66,14 +117,18 @@ function ListaDeProfissionais() {
       .catch((err) => console.log(err));
   }, [meusMedicos]);
 
+
   return (
     <>
       <Header />
       <Doctors>
-        <h2>Doadores</h2>
+        <div className="row">
+          <h2>Doadores</h2>
+          <FiltroDoadores />
+        </div>
         <ul>
-          {listaDeProfissionais.length > 0 ? (
-            listaDeProfissionais.map((profissional: IProfissional) => (
+          {filtroDeProfissionais ? (
+            filtroDeProfissionais.map((profissional: IProfissional) => (
               <li key={profissional.id}>
                 <Profissional
                   key={profissional.id}

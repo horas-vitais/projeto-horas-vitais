@@ -29,6 +29,7 @@ interface ContextProviderData {
   user: IUser | null;
   loading: boolean;
   functionVoltar: () => void;
+  setUser: (newValue: any) => void
 }
 
 export const Context = createContext({} as ContextProviderData);
@@ -43,9 +44,9 @@ export const ContextProvider = ({ children }: ProviderChildren) => {
 
       const token = localStorage.getItem("@HorasDeVida:Token")  
       const userId = localStorage.getItem("@HorasDeVida:Id")
-  
+      
       if(token){
-
+        
         api.get("isLogged", {
           headers: {
             Authorization: `Bearer ${token}`
@@ -64,7 +65,8 @@ export const ContextProvider = ({ children }: ProviderChildren) => {
             navigate("/perfil", { replace: true })
           }
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log(err)
           navigate("/login", { replace: true })
           setLoading(false)
         })
@@ -115,7 +117,7 @@ export const ContextProvider = ({ children }: ProviderChildren) => {
       );
   };
   return (
-    <Context.Provider value={{ onSubmitFunction, user, functionVoltar, loading }}>
+    <Context.Provider value={{ onSubmitFunction, user, functionVoltar, loading, setUser }}>
       {children}
     </Context.Provider>
   );
