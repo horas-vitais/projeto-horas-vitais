@@ -29,6 +29,7 @@ interface ProfissionalProps {
   profissional: IProfissional;
   description: string | undefined;
 }
+
 function MeuProfissional({ profissional, description }: ProfissionalProps) {
   function removerProfissional(id: number) {
     const token = localStorage.getItem("@HorasDeVida:Token");
