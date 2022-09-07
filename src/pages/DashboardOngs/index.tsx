@@ -15,7 +15,6 @@ import FiltroDoadores from "../../components/FiltroDoadores";
 import MeuProfissional from "../../components/MeuProfissional";
 import "./style";
 
-
 interface IProfissional {
   name?: string;
   CPF: string;
@@ -42,53 +41,11 @@ interface Review {
 }
 
 function ListaDeProfissionais() {
-
   const { filtroDeProfissionais, setListaDeProfissionais } =
-  useContext(ProfissionalContext);
-
-  const token = localStorage.getItem("@HorasDeVida:Token")
-  const ongId = localStorage.getItem("@HorasDeVida:Id")
-
-  const [meusMedicos, setMeusMedicos] = useState([])
-
-  useEffect(() => {
-    api.get("https://horasvitais.herokuapp.com/medics", 
-      {
-        headers:{
-          Authorization: `Bearer ${token}`
-        }
-      }
-    )
-    .then((res) => setMeusMedicos(res.data))
-    .catch((err) => console.log(err))
-  },[])
-
-  const [comentario, setComentario] = useState([]);
-  
-  // useEffect(() => {
-  //   const token = localStorage.getItem("@HorasDeVida:Token");
-
-  //   if (token) {
-  //     api.defaults.headers.common["Authorization"] = token;
-  //   }
-  //   api
-  //     .get("/users")
-  //     .then((res) => {
-  //       setListaDeProfissionais(res.data);
-  //     })
-  //     .catch((err) => console.log(err));
-
-  //   api
-  //     .get("/db")
-  //     .then((res) => setComentario(res.data.reviews))
-  //     .catch((err) => console.error(err));
-  // }, []);
-
-
-
-  const ongId = localStorage.getItem("@HorasDeVida:Id");
-  const { listaDeProfissionais, setListaDeProfissionais } =
     useContext(ProfissionalContext);
+
+  const token = localStorage.getItem("@HorasDeVida:Token");
+  const ongId = localStorage.getItem("@HorasDeVida:Id");
 
   const [meusMedicos, setMeusMedicos] = useState([]);
   const [comentario, setComentario] = useState([]);
@@ -116,7 +73,6 @@ function ListaDeProfissionais() {
       .then((res) => setMeusMedicos(res.data))
       .catch((err) => console.log(err));
   }, [meusMedicos]);
-
 
   return (
     <>

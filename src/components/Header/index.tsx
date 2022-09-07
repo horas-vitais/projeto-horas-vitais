@@ -45,7 +45,7 @@ const Header = () => {
       </Link>
       <nav>
         <Link to="/login">Login</Link>
-        <Link to="/contato">Contato</Link>
+        <Link to="/contatos">Contato</Link>
         <Link to="/sobre">Sobre</Link>
       </nav>
       <button onClick={() => setIsOpenModal(!openModal)}>
@@ -55,7 +55,7 @@ const Header = () => {
         <div className="dropdown">
           <section>
             <Link to="/login">Login</Link>
-            <Link to="/contato">Contato</Link>
+            <Link to="/contatos">Contato</Link>
             <Link to="/sobre">Sobre</Link>
           </section>
         </div>
