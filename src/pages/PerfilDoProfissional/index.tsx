@@ -13,7 +13,7 @@ import { Button } from "./style";
 
 interface PerfilUsuario {
   CPF: number;
-  areaAtuacao: string;
+  areaDeAtuacao: string;
   email: string;
   id: number;
   isOng: boolean;
@@ -115,7 +115,7 @@ export const PerfilDoProfissional = () => {
             <h2>Dr. {usuario?.name}</h2>
 
             <p>FORMAÇÃO</p>
-            <span>{usuario?.areaAtuacao}</span>
+            <span>{usuario?.areaDeAtuacao}</span>
           </div>
           <div className="meio">
             {usuario?.localidade ? (

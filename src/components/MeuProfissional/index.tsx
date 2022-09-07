@@ -32,7 +32,6 @@ interface ProfissionalProps {
 function MeuProfissional({ profissional, description }: ProfissionalProps) {
   function removerProfissional(id: number) {
     const token = localStorage.getItem("@HorasDeVida:Token");
-    const userId = localStorage.getItem("@HorasDeVida:Id");
 
     api
       .delete(`https://horasvitais.herokuapp.com/medics/${id}}`, {
@@ -78,13 +77,12 @@ function MeuProfissional({ profissional, description }: ProfissionalProps) {
           <h3 className="nomeDoProfissional">{profissional.name}</h3>
         </Link>
 
-        <span>{profissional.areaAtuacao}</span>
+        <span>{profissional.areaDeAtuacao}</span>
       </div>
       <DropDownMenu description={description}></DropDownMenu>
       <button onClick={() => removerProfissional(profissional.id)}>
         REMOVER
       </button>
-
     </>
   );
 }

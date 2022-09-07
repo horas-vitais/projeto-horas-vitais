@@ -26,7 +26,7 @@ import Switch from "@mui/material/Switch";
 import * as React from "react";
 interface PerfilUsuario {
   CPF: number;
-  areaAtuacao: string;
+  areaDeAtuacao: string;
   email: string;
   id: number;
   isOng: boolean;
@@ -38,7 +38,7 @@ interface PerfilUsuario {
   contato?: string;
   disponivel: boolean;
   description: string;
-  userId?: string
+  userId?: string;
 }
 
 export const DashboardProfissionalSaude = () => {
@@ -407,7 +407,7 @@ export const DashboardProfissionalSaude = () => {
 
         <DivSections>
           <Section>
-            <span>Área de atuação: {usuario?.areaAtuacao}</span>
+            <span>Área de atuação: {usuario?.areaDeAtuacao}</span>
 
             {usuario?.localidade ? (
               <p>Localização: {usuario.localidade}</p>
