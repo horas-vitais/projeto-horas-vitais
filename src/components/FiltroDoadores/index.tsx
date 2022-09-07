@@ -1,14 +1,17 @@
 import { useContext, useState } from "react"
-import { FilterContext } from "../../contexts/filterContext"
+import { ProfissionalContext } from "../../Providers/contextProfissional"
 import { Form } from "./styles"
 
 const FiltroDoadores = () => {
     const [value, setValue] = useState("")
-    const {setFiltroValue} = useContext(FilterContext)
+    const {filtrar} = useContext(ProfissionalContext)
 
     return (
-        <Form onSubmit={() => setFiltroValue(value)}>
-            <input type="text" placeholder="Filtre por especialidade" onChange={(e) => setValue(e.target.value) }/>
+        <Form onSubmit={(e) => {
+            e.preventDefault()
+            filtrar(value)
+        }}>
+            <input type="text" placeholder="Filtre por especialidade" onChange={(e) => setValue(e.target.value.toLowerCase()) }/>
             <button type="submit">Pesquisar</button>
         </Form>
     )

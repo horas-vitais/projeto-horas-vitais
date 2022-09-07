@@ -9,7 +9,6 @@ import Footer from "../../components/Footer";
 import { Link } from "react-router-dom";
 import { api } from "../../services/api";
 import * as React from "react";
-
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import Card from "../../components/Card";
@@ -18,7 +17,7 @@ import FiltroDoadores from "../../components/FiltroDoadores";
 interface IProfissional {
   name?: string;
   CPF: string;
-  areaAtuacao: string;
+  areaDeAtuacao: string;
   contato: string;
   email: string;
   id: number;
@@ -40,29 +39,32 @@ interface Review {
 }
 
 function ListaDeProfissionais() {
+  const { filtroDeProfissionais, setListaDeProfissionais } =
+  useContext(ProfissionalContext);
+
+  
   const [comentario, setComentario] = useState([]);
+  
+  // useEffect(() => {
+  //   const token = localStorage.getItem("@HorasDeVida:Token");
 
-  const { listaDeProfissionais, setListaDeProfissionais } =
-    useContext(ProfissionalContext);
+  //   if (token) {
+  //     api.defaults.headers.common["Authorization"] = token;
+  //   }
+  //   api
+  //     .get("/users")
+  //     .then((res) => {
+  //       setListaDeProfissionais(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
 
-  useEffect(() => {
-    const token = localStorage.getItem("@HorasDeVida:Token");
+  //   api
+  //     .get("/db")
+  //     .then((res) => setComentario(res.data.reviews))
+  //     .catch((err) => console.error(err));
+  // }, []);
 
-    if (token) {
-      api.defaults.headers.common["Authorization"] = token;
-    }
-    api
-      .get("/users")
-      .then((res) => {
-        setListaDeProfissionais(res.data);
-      })
-      .catch((err) => console.log(err));
 
-    api
-      .get("/db")
-      .then((res) => setComentario(res.data.reviews))
-      .catch((err) => console.error(err));
-  }, []);
 
   return (
     <>
@@ -73,8 +75,8 @@ function ListaDeProfissionais() {
           <FiltroDoadores />
         </div>
         <ul>
-          {listaDeProfissionais.length > 0 ? (
-            listaDeProfissionais.map((profissional: IProfissional) => (
+          {filtroDeProfissionais ? (
+            filtroDeProfissionais.map((profissional: IProfissional) => (
               <li key={profissional.id}>
                 <Profissional
                   key={profissional.id}

@@ -6,7 +6,7 @@ import { Div } from "./style";
 interface IProfissional {
   name?: string;
   CPF: string;
-  areaAtuacao: string;
+  areaDeAtuacao?: string;
   contato: string;
   email: string;
   id: number;
@@ -28,7 +28,6 @@ interface ProfissionalProps {
   description: string | undefined;
 }
 function Profissional({ profissional, description }: ProfissionalProps) {
-  console.log(profissional.disponivel);
   return (
     <>
       <div className="profissionalImgContainer">
@@ -42,7 +41,7 @@ function Profissional({ profissional, description }: ProfissionalProps) {
         <Link to={`/visualizarPerfil/${profissional.id}`}>
           <h3 className="nomeDoProfissional">{profissional.name}</h3>
         </Link>
-        <span>{profissional.areaAtuacao}</span>
+        <span>{profissional.areaDeAtuacao}</span>
         <Div>
           {profissional.disponivel === "true" ? (
             <h4 className="disponivel">Disponível</h4>

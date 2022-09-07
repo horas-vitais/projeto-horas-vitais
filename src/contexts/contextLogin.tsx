@@ -53,12 +53,10 @@ export const ContextProvider = ({ children }: ProviderChildren) => {
         })
         .then(async () => {
 
-          console.log("teste")
           const { data } = await api.get<IUser>(`users/${userId}`)
 
           setUser(data)
           setLoading(false)
-          console.log("HERE")
 
           if(data.isOng){
             navigate("/dashboard", { replace: true })
