@@ -12,13 +12,19 @@ const GlobalStyle = createGlobalStyle`
     --text-shadow: .4rem .4rem 0 rgba(0, 0, 0, .2);
     --border: .2rem solid var(--green);
   }
-
+  ul::-webkit-scrollbar {
+  max-width: 5px;  
+}
+ul::-webkit-scrollbar-thumb {
+  background-color: #16a085;
+  border-radius: 20px;
+  max-width: 5px;
+}
   .App {
     max-width: 100vw;
     min-height: 100vh;
     overflow-x: hidden;
   }
-
   * {
     font-family: 'Poppins', sans-serif;
     padding: 0;
