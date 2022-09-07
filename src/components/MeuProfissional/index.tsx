@@ -35,7 +35,7 @@ function MeuProfissional({ profissional, description }: ProfissionalProps) {
     const token = localStorage.getItem("@HorasDeVida:Token");
 
     api
-      .delete(`https://horasvitais.herokuapp.com/medics/${id}}`, {
+      .delete(`https://horasvitais.herokuapp.com/medics/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -81,6 +81,7 @@ function MeuProfissional({ profissional, description }: ProfissionalProps) {
         <span>{profissional.areaDeAtuacao}</span>
       </div>
       <DropDownMenu description={description}></DropDownMenu>
+      <br></br>
       <button onClick={() => removerProfissional(profissional.id)}>
         REMOVER
       </button>

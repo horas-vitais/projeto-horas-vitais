@@ -1,15 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { ProfissionalContext } from "../../Providers/contextProfissional";
 import { DivClientReview, Doctors } from "./style";
 import Profissional from "../../components/Profissional";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { api } from "../../services/api";
-
 import * as React from "react";
-import Rating from "@mui/material/Rating";
-import Typography from "@mui/material/Typography";
-
 import Card from "../../components/Card";
 import FiltroDoadores from "../../components/FiltroDoadores";
 import MeuProfissional from "../../components/MeuProfissional";
@@ -41,38 +36,10 @@ interface Review {
 }
 
 function ListaDeProfissionais() {
-  const { filtroDeProfissionais, setListaDeProfissionais } =
+  const { filtroDeProfissionais, comentario, ongId, meusMedicos } =
     useContext(ProfissionalContext);
 
-  const token = localStorage.getItem("@HorasDeVida:Token");
-  const ongId = localStorage.getItem("@HorasDeVida:Id");
-
-  const [meusMedicos, setMeusMedicos] = useState([]);
-  const [comentario, setComentario] = useState([]);
-
-  useEffect(() => {
-    const token = localStorage.getItem("@HorasDeVida:Token");
-
-    if (token) {
-      api.defaults.headers.common["Authorization"] = token;
-    }
-    api
-      .get("/users")
-      .then((res) => {
-        setListaDeProfissionais(res.data);
-      })
-      .catch((err) => console.log(err));
-
-    api
-      .get("/db")
-      .then((res) => setComentario(res.data.reviews))
-      .catch((err) => console.error(err));
-
-    api
-      .get("https://horasvitais.herokuapp.com/medics")
-      .then((res) => setMeusMedicos(res.data))
-      .catch((err) => console.log(err));
-  }, [meusMedicos]);
+  
 
   return (
     <>
