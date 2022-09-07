@@ -5,7 +5,7 @@ import { DashboardProfissionalSaude } from "../pages/DashboardProfissionalSaude"
 import Home from "../pages/Home";
 import { Login } from "../pages/Login";
 import Page404 from "../pages/Page404";
-import { PerfilDoProfissional } from "../pages/PerfilDoProfissional;
+import { PerfilDoProfissional } from "../pages/PerfilDoProfissional";
 import Register from "../pages/Register";
 
 const RoutesMain = () => {
@@ -15,10 +15,13 @@ const RoutesMain = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route element={<ProtectedRoutes/>} >
+      <Route element={<ProtectedRoutes />}>
         <Route path="/perfil" element={<DashboardProfissionalSaude />} />
         <Route path="/dashboard" element={<ListaDeProfissionais />} />
-        <Route path="/visualizarPerfil/:id" element={<PerfilDoProfissional />} />
+        <Route
+          path="/visualizarPerfil/:id"
+          element={<PerfilDoProfissional />}
+        />
       </Route>
       <Route path="*" element={<Page404 />} />
     </Routes>
