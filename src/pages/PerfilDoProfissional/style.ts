@@ -3,19 +3,19 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 85%;
   height: 80vh;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-
+  margin-left: 6%;
   border: solid 1px #16a085;
   border-radius: 20px;
-  margin-top: 3rem;
+  margin-top: 5rem;
   position: relative;
 
   .imagemFundo {
     width: 100%;
     height: 40%;
     border-radius: 20px 20px 0 0;
+    object-fit: cover;
   }
 
   .informacoesDoPerfil {
@@ -44,6 +44,7 @@ export const Container = styled.div`
   .imagemDePerfil img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
     border-radius: 100%;
   }
 
@@ -115,15 +116,22 @@ export const Container = styled.div`
     flex-direction: column;
     justify-content: center;
   }
+  .ladoDireito .descricao {
+    width: 90%;
+    height: 40%;
+    border-radius: 15px;
+    border: 1px solid #16a085;
+    padding: 1rem;
+  }
 
   .ladoDireito .review {
     width: 50%;
-    height: 60%;
+    height: 20%;
     background-color: #fff;
     cursor: pointer;
     color: var(--green);
-    border-radius: 100%;
-    font-size: 180%;
+    border-radius: 15px;
+    font-size: 100%;
     font-weight: 600;
     margin-top: 1rem;
     border: 0.2rem solid var(--green);
@@ -134,100 +142,48 @@ export const Container = styled.div`
     color: #fff;
     border: 0.2rem solid green;
   }
+  .btn-alterar {
+    background-color: transparent;
+    cursor: pointer;
+    color: #16a085;
+    padding: 5px;
+    border: #16a085 solid 1px;
+    margin: 5px;
+    border-radius: 15px;
+    :hover {
+      color: #fff;
+      background-color: #16a085;
+      border: 1px solid #16a085;
+    }
+  }
 
-  @media (max-width: 720px) {
-    width: 85%;
-    height: 60%;
-
+  @media (max-width: 800px) {
+    width: 100%;
+    height: 100vh;
+    margin-left: 0%;
+    .informacoesDoPerfil {
+      flex-direction: column;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+  }
+  @media (max-width: 650px) {
+    height: 130vh;
     .imagemFundo {
-      width: 100%;
-      height: 20vh;
+      max-height: 20%;
     }
-
-    .ladoEsquerdo {
-      max-width: 33.33%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .imagemDePerfil {
-      height: 80%;
-      width: 80%;
-    }
-
-    .ladoEsquerdo h2 {
-      align-self: center;
-      margin-top: 1rem;
-      font-size: 1rem;
-    }
-
-    .ladoEsquerdo p {
-      margin-top: 1rem;
-      font-size: 80%;
-    }
-
-    .ladoEsquerdo span {
-      margin-top: 0.3rem;
-      font-size: 80%;
-    }
-
-    .meio {
-      max-width: 33.33%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .meio h3 {
-      align-self: center;
-      margin-top: 3rem;
-      font-size: 80%;
-    }
-
-    .meio p {
-      align-self: center;
-      margin-top: 0.3rem;
-      font-size: 80%;
-    }
-
-    .meio span {
-      margin-top: 1.5rem;
-      font-weight: 520;
-      font-size: 80%;
-    }
-
-    .meio .registro {
-      font-size: 80%;
-      margin-top: 1.5rem;
-      font-weight: 600;
-    }
-
-    .meio .registro p {
-      margin-left: 30%;
-      margin-top: 0.5rem;
-      font-size: 80%;
-    }
-
-    .ladoDireito {
-      width: 33.33%;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .ladoDireito .review {
-      width: 10vw;
-      height: 10vh;
-      background-color: #fff;
-      cursor: pointer;
-      color: var(--green);
-      border-radius: 100%;
-      font-size: 50%;
-      margin-top: 5rem;
-      border: 2px solid var(--green);
-      overflow: hidden;
+    .informacoesDoPerfil {
+      flex-wrap: nowrap;
+      .ladoEsquerdo {
+        width: 100%;
+      }
+      .meio {
+        width: 100%;
+      }
+      .ladoDireito {
+        width: 100%;
+        min-height: 40%;
+      }
     }
   }
 `;
@@ -270,6 +226,19 @@ export const Review = styled.div`
     font-size: 28px;
     color: white;
   }
+
+  input {
+    width: 85%;
+    height: 100%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-left: 7%;
+    padding-left: 5%;
+    font-size: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #006853;
+  }
   textarea {
     width: 85%;
     height: 100%;
@@ -309,51 +278,13 @@ export const Review = styled.div`
     background-color: #fff;
     border: 2px solid var(--green);
   }
-
-  @media (max-width: 720px) {
-    flex-direction: column;
-    align-items: center;
-
+  @media (max-width: 650px) {
     .modal {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      width: 80%;
-      height: 100%;
-    }
-
-    .faixa {
-      display: flex;
-      height: 2rem;
-      margin: 2%;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      border-radius: 5px;
-    }
-    .modal h2 {
-      margin-left: 2%;
-      font-size: 75%;
-    }
-    textarea {
-      width: 80%;
-      height: 70%;
-      font-size: 60%;
-    }
-
-    .botaox {
-      width: 20%;
-      height: 60%;
-      border-radius: 5px;
-      margin-right: 3%;
-    }
-
-    .modal .salvar {
-      width: 60%;
-      height: 80%;
-      margin: 2%;
-      font-size: 80%;
-      border-radius: 5px;
+      width: 80vw;
+      height: 40vh;
+      .salvar {
+        width: 40%;
+      }
     }
   }
 `;

@@ -43,6 +43,7 @@ export const Doctors = styled.section`
     img {
       width: 200px;
       height: 200px;
+      object-fit: cover;
       border: 3px solid #16a085;
       border-radius: 8px;
     }
@@ -127,7 +128,9 @@ export const DivClientReview = styled.div`
     gap: 1rem;
     overflow: auto;
     padding: 2rem;
+    scrollbar-width: thin;
   }
+
   li {
     margin: 2rem;
     min-width: 280px;
