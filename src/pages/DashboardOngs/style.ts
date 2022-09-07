@@ -51,6 +51,7 @@ export const Doctors = styled.section`
     text-shadow: 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.2);
     font-size: 50px;
     color: #16a085;
+    margin-left: 5%;
     text-align: center;
   }
 
@@ -88,16 +89,6 @@ export const Doctors = styled.section`
   p {
     color: red;
     font-size: 15px;
-  }
-
-  .row {
-    width: 85%;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-    margin: 0 auto;
   }
 `;
 

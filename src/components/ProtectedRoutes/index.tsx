@@ -8,7 +8,6 @@ const ProtectedRoutes = () => {
     const {loading, user} = useContext(Context)
 
     if(loading){
-        console.log("here")
         return (
             <LoadingContainer>
                 <CircularProgress />
